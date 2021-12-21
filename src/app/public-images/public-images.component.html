@@ -1,0 +1,359 @@
+<!-- <div>Hello there </div> -->
+
+<!-- <div class="container m-2">
+    <div class="d-flex justify-content-start">
+        <p>Search:</p>
+        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+    </div>
+</div> -->
+<div id="deleteImageModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure? Delete this image?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg"
+                    class="carg-img-top img-fluid rounded" alt="Ever Given">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="d-flex justify-content-between mx-4 mt-2 border-bottom border-dark">
+    <div class="py-2">
+        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+    </div>
+    <div class="align-self-sm-end py-2">
+        <button type="button" class="btn btn-secondary" routerLink="/login">Upload your picture</button>
+    </div>
+</div>
+
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3 text-center mx-auto ">
+            <div class="card p-1 m-1">
+                <div class="imageContainer" onclick="window.open('https://css-tricks.com/creating-clickable-divs/');">
+                    <img src="https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg"
+                        class="carg-img-top img-fluid rounded" alt="Ever Given">
+                    <div class="imgOverlay">
+                        <div class="imgText mt-2 ms-2">
+                            <h4>Picture name</h4>
+                        </div>
+                        <div class="imgText2 mb-2 me-2">
+                            <p>Click to open full size image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between pt-1 mt-1 border-top border-secondary">
+                    <!-- <i class="bi bi-eye"></i>
+                    <i class="bi bi-eye-slash-fill"></i>
+                    <i class="bi bi-pencil-square"></i> -->
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-eye-slash-fill"></i></button>
+
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-x-lg"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-md-3 text-center mx-auto ">
+            <div class="card p-1 m-1">
+                <div class="imageContainer" onclick="window.open('https://css-tricks.com/creating-clickable-divs/');">
+                    <img src="https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg"
+                        class="carg-img-top img-fluid rounded" alt="Ever Given">
+                    <div class="imgOverlay">
+                        <div class="imgText mt-2 ms-2">
+                            <h4>Picture name</h4>
+                        </div>
+                        <div class="imgText2 mb-2 me-2">
+                            <p>Click to open full size image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between pt-1 mt-1 border-top border-secondary">
+                    <!-- <i class="bi bi-eye"></i>
+                    <i class="bi bi-eye-slash-fill"></i>
+                    <i class="bi bi-pencil-square"></i> -->
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i
+                            class="bi bi-eye-slash-fill"></i></button>
+
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-x-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center mx-auto ">
+            <div class="card p-1 m-1">
+                <div class="imageContainer" onclick="window.open('https://css-tricks.com/creating-clickable-divs/');">
+                    <img src="https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg"
+                        class="carg-img-top img-fluid rounded" alt="Ever Given">
+                    <div class="imgOverlay">
+                        <div class="imgText mt-2 ms-2">
+                            <h4>Picture name</h4>
+                        </div>
+                        <div class="imgText2 mb-2 me-2">
+                            <p>Click to open full size image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between pt-1 mt-1 border-top border-secondary">
+                    <!-- <i class="bi bi-eye"></i>
+                    <i class="bi bi-eye-slash-fill"></i>
+                    <i class="bi bi-pencil-square"></i> -->
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i
+                            class="bi bi-eye-slash-fill"></i></button>
+
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-x-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center mx-auto ">
+            <div class="card p-1 m-1">
+                <div class="imageContainer" onclick="window.open('https://css-tricks.com/creating-clickable-divs/');">
+                    <img src="https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg"
+                        class="carg-img-top img-fluid rounded" alt="Ever Given">
+                    <div class="imgOverlay">
+                        <div class="imgText mt-2 ms-2">
+                            <h4>Picture name</h4>
+                        </div>
+                        <div class="imgText2 mb-2 me-2">
+                            <p>Click to open full size image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between pt-1 mt-1 border-top border-secondary">
+                    <!-- <i class="bi bi-eye"></i>
+                    <i class="bi bi-eye-slash-fill"></i>
+                    <i class="bi bi-pencil-square"></i> -->
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i
+                            class="bi bi-eye-slash-fill"></i></button>
+
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-x-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center mx-auto ">
+            <div class="card p-1 m-1">
+                <div class="imageContainer" onclick="window.open('https://css-tricks.com/creating-clickable-divs/');">
+                    <img src="https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg"
+                        class="carg-img-top img-fluid rounded" alt="Ever Given">
+                    <div class="imgOverlay">
+                        <div class="imgText mt-2 ms-2">
+                            <h4>Picture name</h4>
+                        </div>
+                        <div class="imgText2 mb-2 me-2">
+                            <p>Click to open full size image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between pt-1 mt-1 border-top border-secondary">
+                    <!-- <i class="bi bi-eye"></i>
+                    <i class="bi bi-eye-slash-fill"></i>
+                    <i class="bi bi-pencil-square"></i> -->
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i
+                            class="bi bi-eye-slash-fill"></i></button>
+
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-x-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center mx-auto ">
+            <div class="card p-1 m-1">
+                <div class="imageContainer" onclick="window.open('https://css-tricks.com/creating-clickable-divs/');">
+                    <img src="https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg"
+                        class="carg-img-top img-fluid rounded" alt="Ever Given">
+                    <div class="imgOverlay">
+                        <div class="imgText mt-2 ms-2">
+                            <h4>Picture name</h4>
+                        </div>
+                        <div class="imgText2 mb-2 me-2">
+                            <p>Click to open full size image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between pt-1 mt-1 border-top border-secondary">
+                    <!-- <i class="bi bi-eye"></i>
+                    <i class="bi bi-eye-slash-fill"></i>
+                    <i class="bi bi-pencil-square"></i> -->
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i
+                            class="bi bi-eye-slash-fill"></i></button>
+
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-x-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center mx-auto ">
+            <div class="card p-1 m-1">
+                <div class="imageContainer" onclick="window.open('https://css-tricks.com/creating-clickable-divs/');">
+                    <img src="https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg"
+                        class="carg-img-top img-fluid rounded" alt="Ever Given">
+                    <div class="imgOverlay">
+                        <div class="imgText mt-2 ms-2">
+                            <h4>Picture name</h4>
+                        </div>
+                        <div class="imgText2 mb-2 me-2">
+                            <p>Click to open full size image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between pt-1 mt-1 border-top border-secondary">
+                    <!-- <i class="bi bi-eye"></i>
+                    <i class="bi bi-eye-slash-fill"></i>
+                    <i class="bi bi-pencil-square"></i> -->
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i
+                            class="bi bi-eye-slash-fill"></i></button>
+
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-x-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center mx-auto ">
+            <div class="card p-1 m-1">
+                <div class="imageContainer" onclick="window.open('https://css-tricks.com/creating-clickable-divs/');">
+                    <img src="https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg"
+                        class="carg-img-top img-fluid rounded" alt="Ever Given">
+                    <div class="imgOverlay">
+                        <div class="imgText mt-2 ms-2">
+                            <h4>Picture name</h4>
+                        </div>
+                        <div class="imgText2 mb-2 me-2">
+                            <p>Click to open full size image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between pt-1 mt-1 border-top border-secondary">
+                    <!-- <i class="bi bi-eye"></i>
+                    <i class="bi bi-eye-slash-fill"></i>
+                    <i class="bi bi-pencil-square"></i> -->
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-outline-dark btn-sm py-0"><i
+                            class="bi bi-eye-slash-fill"></i></button>
+
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#" class="btn btn-outline-dark btn-sm py-0" data-bs-toggle="modal"
+                        data-bs-target="#deleteImageModal"><i class="bi bi-x-lg"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

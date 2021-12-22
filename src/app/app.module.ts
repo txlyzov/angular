@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { PublicImagesComponent } from './pages/public-images';
 import { RegisterComponent } from './pages/register';
 import { LoginComponent } from './pages/login';
-import { TestComponent } from './pages/test/test.component';
 import { UserImagesComponent } from './pages/user-images';
 
 
@@ -15,7 +14,6 @@ import { UserImagesComponent } from './pages/user-images';
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
     PublicImagesComponent,
     UserImagesComponent,
     RegisterComponent,

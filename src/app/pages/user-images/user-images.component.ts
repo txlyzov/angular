@@ -59,14 +59,12 @@ export class UserImagesComponent {
         button.type = 'button';
         button.style.display = 'none';
         button.setAttribute('data-toggle','modal');
-    
-        // if(mode === 'add'){
-        //   button.setAttribute('data-target','#addEmployeeModal');
-        // } 
+        //for future
+
         // if(mode === 'edit'){
-        //   if(employee)
-        //   this.editEmployee = employee;
-        //   button.setAttribute('data-target','#editEmployeeModal');
+        //   if(image)
+        //   this.imageToEdit = image;
+        //   button.setAttribute('data-target','#editImageModal');
         // } 
         if(mode === 'delete'){
           if(image)
@@ -79,6 +77,8 @@ export class UserImagesComponent {
 
     
       public onEditImage(image: Image): void{
+        //for future
+
         // document.getElementById('edit-image-form')?.click();
       }
 

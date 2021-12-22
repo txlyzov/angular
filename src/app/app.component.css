@@ -1,47 +1,6 @@
-/* @media screen and (min-resolution: 90%) {} */
-
-
-/* @media screen and (min-height: 0%) {
-    .footer {
-        position: fixed;
-        left: 0px;
-        bottom: 0px;
-        width: 100%;
-    }
-} */
-
-
-/* #main {
-    min-height: 100hv;
-}
-
-.height-style {
-    min-height: 100hv;
-} */
-
 .footer {
     position: fixed;
     left: 0px;
     bottom: 0px;
     width: 100%;
 }
-
-
-/* html,
-body {
-    height: 100%;
-    position: relative;
-}
-
-app-root {
-    min-height: 100%;
-    display: block;
-    position: relative;
-    padding-bottom: 56px;
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-} */

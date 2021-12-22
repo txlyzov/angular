@@ -58,10 +58,10 @@
                 <div class="imageContainer" (click)="openLink(image.imageUrl)">
                     <img src="{{image?.imageUrl}}" class="carg-img-top img-fluid rounded" alt="Ever Given">
                     <div class="imgOverlay">
-                        <div class="imgText mb-2">
+                        <div class="imgText">
                             <p>Click to open full size image</p>
                         </div>
-                        <div class="imgText mt-5">
+                        <div class="imgText">
                             <h4>{{image?.imageName}}</h4>
                         </div>
                     </div>
@@ -96,10 +96,10 @@
                         <div class="imageContainer text-center" (click)="openLink(imageToDelete.imageUrl)">
                             <img src="{{imageToDelete?.imageUrl}}" class="carg-img-top img-fluid rounded" alt="Ever Given">
                             <div class="imgOverlay">
-                                <div class="imgText mb-2">
+                                <div class="imgText">
                                     <p>Click to open full size image</p>
                                 </div>
-                                <div class="imgText mt-5">
+                                <div class="imgText">
                                     <h4>{{imageToDelete?.imageName}}</h4>
                                 </div>
                             </div>

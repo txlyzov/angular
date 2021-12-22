@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { PublicImagesComponent } from './public-images';
-import { RegisterComponent } from './register';
-import { LoginComponent } from './login';
-import { UserImagesComponent } from './user-images';
+import { PublicImagesComponent } from './pages/public-images';
+import { RegisterComponent } from './pages/register';
+import { LoginComponent } from './pages/login';
+import { UserImagesComponent } from './pages/user-images';
 
 const routes: Routes = [
   { path: '', component: PublicImagesComponent },

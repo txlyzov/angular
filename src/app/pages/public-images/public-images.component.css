@@ -1,0 +1,61 @@
+.ia-select {
+    background-color: white;
+}
+
+.ia-label {
+    border-bottom-right-radius: 0%;
+    border-top-right-radius: 0%;
+    /* background-color:lightslategrey;
+  color: white; */
+}
+
+.col-md-3 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.imageContainer {
+    position: relative;
+    cursor: pointer;
+}
+
+.imgOverlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+}
+
+.imageContainer:hover .imgOverlay {
+    opacity: .8;
+}
+
+.imgText {
+    top: 15%;
+    position: relative;
+    color: black;
+}
+
+.imgText2 {
+    top: 15%;
+    position: relative;
+    /* top: 88%; */
+    /* left: 55px; */
+    color: black;
+}
+
+.imgText3 {
+    position: absolute;
+    /* top: 240px; */
+    /* left: 55px; */
+    color: black;
+}
+
+i {
+    font-size: 1.4rem;
+}

@@ -8,6 +8,11 @@ import { PublicImagesComponent } from './pages/public-images';
 import { RegisterComponent } from './pages/register';
 import { LoginComponent } from './pages/login';
 import { UserImagesComponent } from './pages/user-images';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ImageCardComponent } from './componentsF/image-card/image-card.component';
+import { DeleteImageModalComponent } from './componentsF/delete-image-modal/delete-image-modal.component';
+import { ImageComponent } from './components/image/image.component';
+import { SelectComponent } from './components/select/select.component';
 
 
 
@@ -17,7 +22,12 @@ import { UserImagesComponent } from './pages/user-images';
     PublicImagesComponent,
     UserImagesComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PaginationComponent,
+    ImageCardComponent, //broken
+    DeleteImageModalComponent,//broken
+    ImageComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,

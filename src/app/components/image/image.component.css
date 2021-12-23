@@ -1,24 +1,3 @@
-.ia-select {
-    background-color: white;
-}
-
-.ia-label {
-    border-bottom-right-radius: 0%;
-    border-top-right-radius: 0%;
-}
-
-.card {
-    width: 98%;
-    height: 98%;
-}
-
-.col-md-3 {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-
-/* 
 .image-container {
     position: relative;
     cursor: pointer;
@@ -48,4 +27,4 @@
 
 i {
     font-size: 1.4rem;
-} */
+}

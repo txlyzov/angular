@@ -1,0 +1,49 @@
+.ia-select {
+    background-color: white;
+}
+
+.ia-label {
+    border-bottom-right-radius: 0%;
+    border-top-right-radius: 0%;
+}
+
+.card {
+    width: 98%;
+    height: 98%;
+}
+
+.col-md-3 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.image-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+}
+
+.image-container:hover .image-overlay {
+    opacity: .8;
+}
+
+.image-text {
+    top: 15%;
+    position: relative;
+    color: black;
+}
+
+i {
+    font-size: 1.4rem;
+}

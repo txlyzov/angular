@@ -1,14 +1,14 @@
 <div class="container-fluid">
-    <div class="row ">
+    <div class="row">
         <div class="col-sm p-0">
-            <div class="ms-4 mt-2 pb-1 border-bottom bd-highlight border-dark  d-flex justify-content-start">
+            <div class="ms-4 mt-2 pb-1 border-bottom bd-highlight border-dark d-flex justify-content-start">
                 <div class="p-2 mx-3 bd-highlight">
                     <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
                 </div>
             </div>
         </div>
         <div class="col-sm p-0">
-            <div class="me-4 mt-2 pb-1 border-bottom bd-highlight border-dark  d-flex justify-content-end">
+            <div class="me-4 mt-2 pb-1 border-bottom bd-highlight border-dark d-flex justify-content-end">
                 <div class="p-2 mx-3 bd-highlight">
                     <ul class="pagination mb-0">
                         <li class="page-item disabled">
@@ -36,7 +36,7 @@
 
 <div class="container mt-5">
     <div class="row mb-5">
-        <div *ngFor="let image of images" class="col-md-3 text-center mx-auto ">
+        <div *ngFor="let image of images" class="col-md-3 text-center mx-auto">
             <div class="card p-1 m-1">
                 <div class="image-container m-auto" (click)="openLink(image.imageUrl)">
                     <img src="{{image?.imageUrl}}" class="carg-img-top img-fluid rounded">

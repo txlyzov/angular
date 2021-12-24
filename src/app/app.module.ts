@@ -25,8 +25,8 @@ import { GalleryElementsBarComponent } from './components/gallery-elements-bar/g
     RegisterComponent,
     LoginComponent,
     PaginationComponent,
-    ImageCardComponent, //broken
-    DeleteImageModalComponent,//broken
+    ImageCardComponent,
+    DeleteImageModalComponent,
     ImageComponent,
     SelectComponent,
     GalleryElementsBarComponent

@@ -44,13 +44,6 @@ export class UserImagesComponent implements OnInit {
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
 
-    //for future
-
-    // if(mode === 'edit'){
-    //   if(image)
-    //   this.imageToEdit = image;
-    //   button.setAttribute('data-target','#editImageModal');
-    // } 
     if (model.mode === 'delete') {
       if (model.image)
         this.imageToDelete = model.image;
@@ -59,12 +52,6 @@ export class UserImagesComponent implements OnInit {
     
     container?.appendChild(button);
     button.click();
-  }
-
-  public onEditImage(image: Image): void {
-    //for future
-
-    // document.getElementById('edit-image-form')?.click();
   }
 
   public openLink(url: string) {

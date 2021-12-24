@@ -28,10 +28,10 @@ export class PublicImagesComponent implements OnInit{
     new Image(1, 1, '6', 'https://picsum.photos/270'),
     new Image(1, 1, '7', 'https://picsum.photos/280')
     ];
-
   }
 
 
+  
   public openLink(url: string) {
     window.open(url, "_blank");
   }

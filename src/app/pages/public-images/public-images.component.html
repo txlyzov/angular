@@ -2,8 +2,10 @@
 
 <div class="container mt-5">
     <div class="row mb-5">
+
         <div *ngFor="let image of images" class="col-md-3 text-center mx-auto">
             <app-image-card [image]=image [isOnlyDisplaying]=true></app-image-card>
         </div>
+
     </div>
 </div>

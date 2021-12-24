@@ -1,14 +1,19 @@
 <div class="mx-4 mt-2 pb-1 border-bottom bd-highlight border-dark d-flex justify-content-between">
+
     <div class="p-2 mx-3 bd-highlight">
         <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
     </div>
+
     <div *ngIf="isAvaliable" class="p-2 me-auto bd-highlight">
         <app-select></app-select>
     </div>
+
     <div class="p-2 ms-auto bd-highlight">
         <app-pagination></app-pagination>
     </div>
+
     <div class="p-2 mx-3 bd-highlight">
         <button type="button" class="btn btn-secondary" routerLink="/login">Upload your picture</button>
     </div>
+
 </div>

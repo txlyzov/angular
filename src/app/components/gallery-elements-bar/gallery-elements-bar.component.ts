@@ -5,13 +5,8 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './gallery-elements-bar.component.html',
   styleUrls: ['./gallery-elements-bar.component.css']
 })
-export class GalleryElementsBarComponent implements OnInit {
+export class GalleryElementsBarComponent {
 
   @Input() isAvaliable: boolean | undefined;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

@@ -9,8 +9,8 @@ import { RegisterComponent } from './pages/register';
 import { LoginComponent } from './pages/login';
 import { UserImagesComponent } from './pages/user-images';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { ImageCardComponent } from './componentsF/image-card/image-card.component';
-import { DeleteImageModalComponent } from './componentsF/delete-image-modal/delete-image-modal.component';
+import { ImageCardComponent } from './components/image-card/image-card.component';
+import { DeleteImageModalComponent } from './components/delete-image-modal/delete-image-modal.component';
 import { ImageComponent } from './components/image/image.component';
 import { SelectComponent } from './components/select/select.component';
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Image } from '../../models/image';
 
 
@@ -6,7 +6,7 @@ import { Image } from '../../models/image';
   templateUrl: 'public-images.component.html',
   styleUrls: ['public-images.component.css']
 })
-export class PublicImagesComponent {
+export class PublicImagesComponent implements OnInit{
   public images!: Image[];
 
   ngOnInit() {

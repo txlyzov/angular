@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Image } from '../../models/image';
 
 @Component({
@@ -8,30 +8,12 @@ import { Image } from '../../models/image';
 
 
 
-export class UserImagesComponent {
+export class UserImagesComponent implements OnInit {
   public images!: Image[];
   public imageToEdit!: Image;
   public imageToDelete!: Image;
 
   ngOnInit() {
-    //   this.images = [new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg'),
-    //   new Image(1,1,'EverGiven','https://cdn24.img.ria.ru/images/07e5/03/1a/1603000819_0:240:1024:816_1920x0_80_0_0_3e6a806838a29377992045d1196813b4.jpg')
-    // ];
 
     this.images = [new Image(1, 1, '1', 'https://picsum.photos/100'),
     new Image(1, 1, '2', 'https://picsum.photos/200'),
@@ -54,13 +36,14 @@ export class UserImagesComponent {
   }
 
 
-
-  public onOpenModal(image: Image | null, mode: string) {
+  
+  public onOpenModal(model: {image: Image | null, mode: string}) {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
     button.type = 'button';
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
+
     //for future
 
     // if(mode === 'edit'){
@@ -68,15 +51,15 @@ export class UserImagesComponent {
     //   this.imageToEdit = image;
     //   button.setAttribute('data-target','#editImageModal');
     // } 
-    if (mode === 'delete') {
-      if (image)
-        this.imageToDelete = image;
+    if (model.mode === 'delete') {
+      if (model.image)
+        this.imageToDelete = model.image;
       button.setAttribute('data-target', '#deleteImageModal');
     }
+    
     container?.appendChild(button);
     button.click();
   }
-
 
   public onEditImage(image: Image): void {
     //for future

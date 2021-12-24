@@ -13,6 +13,7 @@ import { ImageCardComponent } from './components/image-card/image-card.component
 import { DeleteImageModalComponent } from './components/delete-image-modal/delete-image-modal.component';
 import { ImageComponent } from './components/image/image.component';
 import { SelectComponent } from './components/select/select.component';
+import { GalleryElementsBarComponent } from './components/gallery-elements-bar/gallery-elements-bar.component';
 
 
 
@@ -27,7 +28,8 @@ import { SelectComponent } from './components/select/select.component';
     ImageCardComponent, //broken
     DeleteImageModalComponent,//broken
     ImageComponent,
-    SelectComponent
+    SelectComponent,
+    GalleryElementsBarComponent
   ],
   imports: [
     BrowserModule,

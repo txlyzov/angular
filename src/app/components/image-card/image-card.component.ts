@@ -13,8 +13,9 @@ export class ImageCardComponent implements OnInit {
   public imageToEdit!: Image;
   public imageToDelete!: Image;
 
+  @Input() isOnlyDisplaying: boolean | undefined;
   @Input() image: Image | undefined;
-  @Output() onOpenModal: EventEmitter<any> = new EventEmitter()
+  @Output() onOpenModal: EventEmitter<any> = new EventEmitter();
 
   constructor() {
 

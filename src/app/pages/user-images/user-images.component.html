@@ -1,34 +1,9 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm p-0">
-            <div class="ms-4 mt-2 pb-1 border-bottom bd-highlight border-dark d-flex justify-content-start">
-                <div class="p-2 mx-3 bd-highlight">
-                    <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                </div>
-                <div class="p-2 mx-3 bd-highlight">
-                    <app-select></app-select>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm p-0">
-            <div class="me-4 mt-2 pb-1 border-bottom bd-highlight border-dark d-flex justify-content-end">
-                <div class="p-2 mx-3 bd-highlight">
-                    <app-pagination></app-pagination>
-                </div>
-                <div class="p-2 mx-3 bd-highlight">
-                    <button type="button" class="btn btn-secondary" routerLink="/login">Upload your picture</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+<app-gallery-elements-bar [isAvaliable]=true></app-gallery-elements-bar>
 
 <div class="container mt-5">
     <div class="row mb-5">
         <div *ngFor="let image of images" class="col-md-3 text-center mx-auto">
-            <app-image-card (onOpenModal)="onOpenModal($event)" [image]=image></app-image-card>
+            <app-image-card (onOpenModal)="onOpenModal($event)" [image]=image [isOnlyDisplaying]=false></app-image-card>
         </div>
 
         <app-delete-image-modal [image]=imageToDelete></app-delete-image-modal>

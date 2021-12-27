@@ -5,14 +5,9 @@
     "import"
   ],
   "parser": "@typescript-eslint/parser",
-  // "parser": "vue-eslint-parser",
-  // "parserOptions": {
-  //   "project": ["./tsconfig.json"]
-  // },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    //   "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:prettier/recommended"
   ],
   "ignorePatterns": [
@@ -23,7 +18,6 @@
   "overrides": [
     {
       "files": [
-        //  "**/*.ts?(x)"
         "*.ts?(x)"
       ],
       "rules": {
@@ -45,27 +39,6 @@
           }
         ],
         "comma-dangle": "off",
-        // "new-cap": [
-        //   "error",
-        //   {
-        //     "capIsNew": true,
-        //     "capIsNewExceptions": [
-        //       "Component",
-        //       "Directive",
-        //       "HostBinding",
-        //       "HostListener",
-        //       "Injectable",
-        //       "Input",
-        //       "NgModule",
-        //       "Output",
-        //       "Pipe",
-        //       "ViewChild",
-        //       "ViewChildren"
-        //     ],
-        //     "newIsCap": true,
-        //     "properties": true
-        //   }
-        // ],
         "no-useless-return": "off",
         "import/order": [
           "error",

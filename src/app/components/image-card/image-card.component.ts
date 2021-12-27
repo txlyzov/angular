@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-// import { EventEmitter } from 'stream';
 import { Image } from '../../models/image';
-import { AnyForModalData } from '../../types/any-for-moda-data';
+import { AnyType } from '../../types/any-type';
 
 @Component({
   selector: 'app-image-card',
@@ -11,7 +10,7 @@ import { AnyForModalData } from '../../types/any-for-moda-data';
 export class ImageCardComponent {
   @Input() isOnlyDisplaying: boolean | undefined;
   @Input() image: Image | undefined;
-  @Output() onOpenModal: EventEmitter<AnyForModalData> = new EventEmitter();
+  @Output() onOpenModal: EventEmitter<AnyType> = new EventEmitter();
 
   setParamsToImageDeleteModal(image: Image | undefined, mode: string) {
     this.onOpenModal.emit({ image, mode });

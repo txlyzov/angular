@@ -14,9 +14,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
             <hr class="dropdown-divider" style="border-color:white;">
-            <li class="nav-item mr-auto"><a href="#" class="nav-link pe-5 text-white" routerLink="/">Public pictures</a></li>
+            <li class="nav-item mr-auto">
+                <a href="#" class="nav-link pe-5 text-white" routerLink="/">Public pictures</a>
+            </li>
+            
             <hr class="dropdown-divider" style="border-color:white;">
-            <li class="nav-item mr-auto"><a href="#" class="nav-link pe-5 text-white" routerLink="/images-control">Your pictures</a></li>
+            <li class="nav-item mr-auto">
+                <a href="#" class="nav-link pe-5 text-white" routerLink="/images-control">Your pictures</a>
+            </li>
         </ul>
 
         <hr class="mb-3 dropdown-divider" style="border-color:white;">
@@ -31,8 +36,9 @@
 <ng-template #loggedOut>
     <h4 class="nav-item mb-auto">
         <a href="#" class="ps-0 pb-0 nav-link text-warning" routerLink="/images-control">
-            {{User}}</a>
-    </h4>>
+            {{User}}
+        </a>
+    </h4>
 </ng-template>
 
 
@@ -47,13 +53,23 @@
     <div class="d-none container py-2">
         <div class="d-flex justify-content-between">
             <a class="btn btn-outline-light btn-floating m-0" href="https://github.com/txlyzov/angular" role="button">
-                <p class="mb-0"><i class="footer-ico bi bi-github"></i> Angular</p>
+                <p class="mb-0">
+                    <i class="footer-ico bi bi-github"></i>
+                     Angular
+                    </p>
             </a>
             <a class="btn btn-outline-light btn-floating text-decoration-none text-uppercase text-md-center" href="#">
-                <p class="mb-0"><i class="footer-ico bi bi-shift"></i> Back to start <i class="footer-ico bi bi-shift"></i></p>
+                <p class="mb-0">
+                    <i class="footer-ico bi bi-shift"></i> 
+                    Back to start 
+                    <i class="footer-ico bi bi-shift"></i>
+                </p>
             </a>
             <a class="btn btn-outline-light btn-floating m-0" href="https://github.com/txlyzov/nodeJS" role="button">
-                <p class="mb-0">Server <i class="footer-ico bi bi-github"></i></p>
+                <p class="mb-0">
+                    Server 
+                    <i class="footer-ico bi bi-github"></i>
+                </p>
             </a>
         </div>
     </div>

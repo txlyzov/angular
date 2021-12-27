@@ -15,8 +15,6 @@ import { ImageComponent } from './components/image/image.component';
 import { SelectComponent } from './components/select/select.component';
 import { GalleryElementsBarComponent } from './components/gallery-elements-bar/gallery-elements-bar.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,14 +27,10 @@ import { GalleryElementsBarComponent } from './components/gallery-elements-bar/g
     DeleteImageModalComponent,
     ImageComponent,
     SelectComponent,
-    GalleryElementsBarComponent
+    GalleryElementsBarComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}

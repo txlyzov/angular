@@ -8,8 +8,12 @@ import { PublicImagesComponent } from './pages/public-images';
 import { RegisterComponent } from './pages/register';
 import { LoginComponent } from './pages/login';
 import { UserImagesComponent } from './pages/user-images';
-
-
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ImageCardComponent } from './components/image-card/image-card.component';
+import { DeleteImageModalComponent } from './components/delete-image-modal/delete-image-modal.component';
+import { ImageComponent } from './components/image/image.component';
+import { SelectComponent } from './components/select/select.component';
+import { GalleryElementsBarComponent } from './components/gallery-elements-bar/gallery-elements-bar.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +21,16 @@ import { UserImagesComponent } from './pages/user-images';
     PublicImagesComponent,
     UserImagesComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PaginationComponent,
+    ImageCardComponent,
+    DeleteImageModalComponent,
+    ImageComponent,
+    SelectComponent,
+    GalleryElementsBarComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}

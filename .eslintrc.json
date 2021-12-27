@@ -1,0 +1,118 @@
+{
+  "root": true,
+  "plugins": [
+    "@typescript-eslint",
+    "import"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "ignorePatterns": [
+    "*.html",
+    "src/app/app.component.spec.ts",
+    "src/test.ts"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts?(x)"
+      ],
+      "rules": {
+        "max-len": [
+          "error",
+          150
+        ],
+        "indent": "off",
+        "quotes": [
+          "error",
+          "single"
+        ],
+        "linebreak-style": "off",
+        "newline-before-return": "error",
+        "import/newline-after-import": [
+          "error",
+          {
+            "count": 1
+          }
+        ],
+        "comma-dangle": "off",
+        "no-useless-return": "off",
+        "import/order": [
+          "error",
+          {
+            "groups": [
+              [
+                "builtin",
+                "external"
+              ]
+            ]
+          }
+        ],
+        "no-console": [
+          "warn",
+          {
+            "allow": [
+              "info",
+              "error",
+              "warn"
+            ]
+          }
+        ],
+        "consistent-return": "off",
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/member-delimiter-style": [
+          "error",
+          {
+            "multiline": {
+              "requireLast": true
+            }
+          }
+        ],
+        "@typescript-eslint/comma-dangle": [
+          "error",
+          {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "functions": "always-multiline",
+            "imports": "always-multiline",
+            "enums": "always-multiline",
+            "tuples": "always-multiline"
+          }
+        ],
+        "@typescript-eslint/no-throw-literal": "off",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-use-before-define": "error",
+        "@typescript-eslint/no-this-alias": [
+          "error",
+          {
+            "allowedNames": [
+              "self"
+            ]
+          }
+        ],
+        "@typescript-eslint/prefer-function-type": "off",
+        "@typescript-eslint/quotes": [
+          "error",
+          "single",
+          {
+            "avoidEscape": true
+          }
+        ],
+        "@typescript-eslint/semi": [
+          "error",
+          "always"
+        ],
+        "@typescript-eslint/unbound-method": "off",
+        "@typescript-eslint/no-useless-constructor": "off",
+        "@typescript-eslint/unified-signatures": "error",
+        "@typescript-eslint/member-ordering": [
+          "warn"
+        ],
+        "@typescript-eslint/no-non-null-assertion": "off"
+      }
+    }
+  ]
+}

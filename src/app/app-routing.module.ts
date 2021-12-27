@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 import { PublicImagesComponent } from './pages/public-images';
 import { RegisterComponent } from './pages/register';
 import { LoginComponent } from './pages/login';
@@ -13,11 +12,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'images-control', component: UserImagesComponent },
 
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

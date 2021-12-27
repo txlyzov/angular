@@ -1,55 +1,11 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm p-0">
-            <div class="ms-4 mt-2 pb-1 border-bottom bd-highlight border-dark d-flex justify-content-start">
-                <div class="p-2 mx-3 bd-highlight">
-                    <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm p-0">
-            <div class="me-4 mt-2 pb-1 border-bottom bd-highlight border-dark d-flex justify-content-end">
-                <div class="p-2 mx-3 bd-highlight">
-                    <ul class="pagination mb-0">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="http://localhost:4200/images-control">1</a></li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="p-2 mx-3 bd-highlight">
-                    <button type="button" class="btn btn-secondary" routerLink="/login">Upload your picture</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+<app-gallery-elements-bar [isAvaliable]=false></app-gallery-elements-bar>
 
 <div class="container mt-5">
     <div class="row mb-5">
+
         <div *ngFor="let image of images" class="col-md-3 text-center mx-auto">
-            <div class="card p-1 m-1">
-                <div class="image-container m-auto" (click)="openLink(image.imageUrl)">
-                    <img src="{{image?.imageUrl}}" class="carg-img-top img-fluid rounded">
-                    <div class="image-overlay">
-                        <div class="image-text">
-                            <p>Click to open full size image</p>
-                        </div>
-                        <div class="image-text">
-                            <h4>{{image?.imageName}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-image-card [image]=image [isOnlyDisplaying]=true></app-image-card>
         </div>
+
     </div>
 </div>

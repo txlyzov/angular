@@ -1,10 +1,30 @@
-import { Component, Input } from '@angular/core';
-import { Image } from '../../models/image';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ImageInterface } from 'src/app/models/image-interface';
+import { ImagesService } from 'src/app/services/images/images.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AnyType } from 'src/app/types/any-type';
 
 @Component({
   selector: 'app-delete-image-modal',
   templateUrl: './delete-image-modal.component.html',
 })
 export class DeleteImageModalComponent {
-  @Input() image: Image | undefined;
+  @Input() image: ImageInterface | undefined;
+  @Output() refreshPageData: EventEmitter<AnyType> = new EventEmitter();
+
+  constructor(private imageService: ImagesService) {}
+
+  public deleteImage(imageId: number | undefined) {
+    if (imageId) {
+      this.imageService.deleteImage(imageId).subscribe(
+        (response: void) => {
+          console.log(response);
+          this.refreshPageData.emit();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        },
+      );
+    }
+  }
 }

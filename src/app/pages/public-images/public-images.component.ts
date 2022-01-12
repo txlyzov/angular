@@ -1,36 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { Image } from '../../models/image';
+import { ImageInterface } from 'src/app/models/image-interface';
+import { ImagesService } from 'src/app/services/images/images.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   templateUrl: 'public-images.component.html',
   styleUrls: ['public-images.component.css'],
 })
 export class PublicImagesComponent implements OnInit {
-  public images!: Image[];
+  public images!: ImageInterface[];
+
+  constructor(private imageService: ImagesService) {}
 
   ngOnInit() {
-    this.images = [
-      new Image(1, 1, '1', 'https://picsum.photos/100'),
-      new Image(1, 1, '2', 'https://picsum.photos/200'),
-      new Image(1, 1, '3', 'https://picsum.photos/300'),
-      new Image(1, 1, '4', 'https://picsum.photos/400'),
-      new Image(1, 1, '5', 'https://picsum.photos/500'),
-      new Image(1, 1, '6', 'https://picsum.photos/600'),
-      new Image(1, 1, '7', 'https://picsum.photos/700'),
-      new Image(1, 1, '8', 'https://picsum.photos/800'),
-      new Image(1, 1, '9', 'https://picsum.photos/900'),
-      new Image(1, 1, '0', 'https://picsum.photos/110'),
-      new Image(1, 1, '1', 'https://picsum.photos/220'),
-      new Image(1, 1, '2', 'https://picsum.photos/230'),
-      new Image(1, 1, '3', 'https://picsum.photos/240'),
-      new Image(1, 1, '4', 'https://picsum.photos/250'),
-      new Image(1, 1, '5', 'https://picsum.photos/260'),
-      new Image(1, 1, '6', 'https://picsum.photos/270'),
-      new Image(1, 1, '7', 'https://picsum.photos/280'),
-    ];
+    this.getAllImages();
   }
 
   public openLink(url: string) {
     window.open(url, '_blank');
+  }
+
+  public getAllImages(): void {
+    this.imageService.getImages().subscribe(
+      (response: ImageInterface[]) => {
+        this.images = response;
+        console.log(this.images);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      },
+    );
   }
 }

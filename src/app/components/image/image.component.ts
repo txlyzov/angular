@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Image } from '../../models/image';
+import { ImageInterface } from 'src/app/models/image-interface';
 
 @Component({
   selector: 'app-image',
@@ -7,7 +7,7 @@ import { Image } from '../../models/image';
   styleUrls: ['./image.component.css'],
 })
 export class ImageComponent {
-  @Input() image: Image | undefined;
+  @Input() image: ImageInterface | undefined;
 
   public openLink(url: string | undefined) {
     if (url) window.open(url, '_blank');

@@ -19,7 +19,7 @@ export class UserImagesComponent implements OnInit {
   }
 
   public getAllImages(): void {
-    this.imageService.getImages().subscribe(
+    this.imageService.getPublicImages().subscribe(
       (response: ImageInterface[]) => {
         this.images = response;
       },

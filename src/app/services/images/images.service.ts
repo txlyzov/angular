@@ -13,18 +13,15 @@ export class ImagesService {
 
   constructor(private http: HttpClient) {}
 
-  public getImages(): Observable<ImageInterface[]> {
+  public getPublicImages(): Observable<ImageInterface[]> {
     return this.http.get<ImageInterface[]>(
       `${this.apiServerUrl}/${this.section}`,
     );
   }
 
   public deleteImage(imageId: number): Observable<string> {
-    return this.http.delete(
-      `${this.apiServerUrl}/${this.section}/delete/${imageId}`,
-      {
-        responseType: 'text',
-      },
-    );
+    return this.http.delete(`${this.apiServerUrl}/${this.section}/${imageId}`, {
+      responseType: 'text',
+    });
   }
 }

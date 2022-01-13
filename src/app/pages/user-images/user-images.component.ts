@@ -22,7 +22,6 @@ export class UserImagesComponent implements OnInit {
     this.imageService.getImages().subscribe(
       (response: ImageInterface[]) => {
         this.images = response;
-        console.log(this.images);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

@@ -9,18 +9,22 @@ import { environment } from 'src/environments/environment';
 })
 export class ImagesService {
   private apiServerUrl = environment.apiServerBaseUrl;
+  private section = 'images';
 
   constructor(private http: HttpClient) {}
 
   public getImages(): Observable<ImageInterface[]> {
-    const uri = 'images';
-
-    return this.http.get<ImageInterface[]>(`${this.apiServerUrl}/${uri}`);
+    return this.http.get<ImageInterface[]>(
+      `${this.apiServerUrl}/${this.section}`,
+    );
   }
 
-  public deleteImage(imageId: number): Observable<void> {
-    return this.http.delete<void>(
-      `${this.apiServerUrl}/images/delete/${imageId}`,
+  public deleteImage(imageId: number): Observable<string> {
+    return this.http.delete(
+      `${this.apiServerUrl}/${this.section}/delete/${imageId}`,
+      {
+        responseType: 'text',
+      },
     );
   }
 }

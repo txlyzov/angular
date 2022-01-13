@@ -17,8 +17,7 @@ export class DeleteImageModalComponent {
   public deleteImage(imageId: number | undefined) {
     if (imageId) {
       this.imageService.deleteImage(imageId).subscribe(
-        (response: void) => {
-          console.log(response);
+        () => {
           this.refreshPageData.emit();
         },
         (error: HttpErrorResponse) => {

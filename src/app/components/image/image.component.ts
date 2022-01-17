@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ImageInterface } from 'src/app/models/image-interface';
+import { ImageInterface } from 'src/app/models/table-models/image-interface';
 
 @Component({
   selector: 'app-image',

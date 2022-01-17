@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ImageInterface } from 'src/app/models/image-interface';
-import { AnyType } from '../../types/any-type';
+import { ImageInterface } from 'src/app/models/table-models/image-interface';
+import { AnyType } from '../../utils/types/any-type';
 
 @Component({
   selector: 'app-image-card',

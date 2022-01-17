@@ -1,11 +1,11 @@
-<div class="container">
+<div [formGroup]="form" class="container">
     <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="https://static.thenounproject.com/png/60319-200.png" />
 
-        <form class="mt-4 form-signin">
-            <input type="text" id="inputId" class="form-control" placeholder="Create your Username" required autofocus/>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Set yout Email address" required autofocus/>
-            <input type="password" id="inputPassword1" class="form-control" placeholder="Create your Password" required/>
+        <form [formGroup]="form" (submit)="submit()" class="mt-4 form-signin">
+            <input formControlName="login" type="text" id="inputId" class="form-control" placeholder="Create your Username" required autofocus/>
+            <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Set yout Email address" required autofocus/>
+            <input formControlName="password" type="password" id="inputPassword1" class="form-control" placeholder="Create your Password" required/>
             <input type="password" id="inputPassword2" class="form-control" placeholder="And confirm password" required/>
 
             <div id="remember" class="checkbox">

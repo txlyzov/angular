@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -15,6 +16,8 @@ import { DeleteImageModalComponent } from './components/delete-image-modal/delet
 import { ImageComponent } from './components/image/image.component';
 import { SelectComponent } from './components/select/select.component';
 import { GalleryElementsBarComponent } from './components/gallery-elements-bar/gallery-elements-bar.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +32,16 @@ import { GalleryElementsBarComponent } from './components/gallery-elements-bar/g
     ImageComponent,
     SelectComponent,
     GalleryElementsBarComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

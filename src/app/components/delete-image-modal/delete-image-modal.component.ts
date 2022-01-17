@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ImageInterface } from 'src/app/models/image-interface';
+import { ImageInterface } from 'src/app/models/table-models/image-interface';
 import { ImagesService } from 'src/app/services/images/images.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AnyType } from 'src/app/types/any-type';
+import { AnyType } from 'src/app/utils/types/any-type';
 
 @Component({
   selector: 'app-delete-image-modal',

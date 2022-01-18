@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { filter, fromEvent, map } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 
@@ -24,6 +25,19 @@ export class HeaderComponent implements OnInit {
     } else {
       this.loggedIn = false;
     }
+    // const message$ = fromEvent<StorageEvent>(window, "storage").pipe(
+    //   filter(event => event.storageArea === sessionStorage),
+    //   filter(event => event.key === "AuthToken"),
+    //   map(event => event.newValue)
+    // );
+    
+    // window.addEventListener('storage', function (e) {
+    //   if (e.storageArea === sessionStorage && e.key === 'AuthToken') {
+    //     // Something on another page changed the stored value.
+    //     console.log(12);
+        
+    //   }
+    // });
   }
 
   logout() {

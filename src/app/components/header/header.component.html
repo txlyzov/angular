@@ -26,7 +26,8 @@
         </ul>
 
         <hr class="mb-3 dropdown-divider" style="border-color:white;">
-        <div *ngIf="!loggedIn; else loggedOut">
+        <div *ngIf="!(token$ | async); else loggedOut">
+            
             <button type="button" class="btn navbar-btn btn-outline-light me-4" routerLink="/login">Login</button>
             <button type="button" class="btn navbar-btn btn-warning" routerLink="/register">Sign-up</button>
         </div>
@@ -38,8 +39,8 @@
 <ng-template #loggedOut>
 
     <h4 class="nav-item mb-auto">
-        <a href="#" class="ps-0 pb-0 nav-link text-warning" routerLink="/images-control">
-            {{User}}
+        <a *ngIf="(login$ | async) as login" href="#" class="ps-0 pb-0 nav-link text-warning" routerLink="/images-control">
+            {{login}}
         </a>
     </h4>
     <!-- temp button -->

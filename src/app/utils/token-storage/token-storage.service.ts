@@ -1,49 +1,68 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY = 'AuthToken';
-const USERNAME_KEY = 'UserLogin';
+const LOGIN_KEY = 'UserLogin';
 //const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenStorageService {
+  private token = new BehaviorSubject<string | null>(
+    window.localStorage.getItem(TOKEN_KEY),
+  );
+  private login = new BehaviorSubject<string | null>(
+    window.localStorage.getItem(LOGIN_KEY),
+  );
+
+  getToken() {
+    return this.token.asObservable();
+  }
+  getLogin() {
+    return this.login.asObservable();
+  }
+
   signOut() {
-    window.sessionStorage.clear();
+    window.localStorage.clear();
+    this.token.next(localStorage.getItem(TOKEN_KEY));
+    this.login.next(localStorage.getItem(LOGIN_KEY));
   }
 
   public saveToken(token: string) {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.setItem(TOKEN_KEY, token);
+    this.token.next(localStorage.getItem(TOKEN_KEY));
   }
 
-  public getToken(): string | null {
-    return sessionStorage.getItem(TOKEN_KEY);
+  // public getToken(): string | null {
+  //   return localStorage.getItem(TOKEN_KEY);
+  // }
+
+  public saveLogin(login: string) {
+    window.localStorage.removeItem(LOGIN_KEY);
+    window.localStorage.setItem(LOGIN_KEY, login);
+    this.login.next(localStorage.getItem(LOGIN_KEY));
   }
 
-  public saveUsername(username: string) {
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, username);
-  }
-
-  public getUsername(): string | null {
-    return sessionStorage.getItem(USERNAME_KEY);
-  }
+  // public getLogin(): string | null {
+  //   return localStorage.getItem(LOGIN_KEY);
+  // }
 
   // public saveAuthorities(authorities: string[]) {
   //   console.log('saveAuthorities');
   //   console.log(authorities);
-  //   window.sessionStorage.removeItem(AUTHORITIES_KEY);
-  //   window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+  //   window.localStorage.removeItem(AUTHORITIES_KEY);
+  //   window.localStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   // }
 
   // public getAuthorities(): string[] {
   //   this.roles = [];
 
-  //   if (sessionStorage.getItem(TOKEN_KEY)) {
+  //   if (localStorage.getItem(TOKEN_KEY)) {
   //     console.log('test');
-  //     console.log(sessionStorage.getItem(AUTHORITIES_KEY));
-  //     JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(
+  //     console.log(localStorage.getItem(AUTHORITIES_KEY));
+  //     JSON.parse(localStorage.getItem(AUTHORITIES_KEY)).forEach(
   //       (authority) => {
   //         this.roles.push(authority);
   //       },

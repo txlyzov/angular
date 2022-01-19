@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filter, fromEvent, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 
@@ -8,40 +8,20 @@ import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.s
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-  loggedIn!: boolean;
-  User!: string | null;
+  token$!: Observable<string | null>;
+  login$!: Observable<string | null>;
 
   constructor(
     private tokenStorageService: TokenStorageService,
     private authService: AuthService,
-  ) {
-    authService.refresHeader.subscribe(() => this.ngOnInit());
-  }
+  ) {}
 
   ngOnInit(): void {
-    if (this.tokenStorageService.getToken()) {
-      this.User = this.tokenStorageService.getUsername();
-      this.loggedIn = true;
-    } else {
-      this.loggedIn = false;
-    }
-    // const message$ = fromEvent<StorageEvent>(window, "storage").pipe(
-    //   filter(event => event.storageArea === sessionStorage),
-    //   filter(event => event.key === "AuthToken"),
-    //   map(event => event.newValue)
-    // );
-    
-    // window.addEventListener('storage', function (e) {
-    //   if (e.storageArea === sessionStorage && e.key === 'AuthToken') {
-    //     // Something on another page changed the stored value.
-    //     console.log(12);
-        
-    //   }
-    // });
+    this.token$ = this.tokenStorageService.getToken();
+    this.login$ = this.tokenStorageService.getLogin();
   }
 
   logout() {
     this.tokenStorageService.signOut();
-    this.authService.headerUpdate();
   }
 }

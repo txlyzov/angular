@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       (err: HttpErrorResponse) => {
-        console.log(err.status);
         alert(err.message);
       },
     );

@@ -26,14 +26,11 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.form.getRawValue());
     this.authService.registerUser(this.form.getRawValue()).subscribe(
-      (res) => {
-        console.log(res);
+      () => {
         this.router.navigate(['/login']);
       },
       (err: HttpErrorResponse) => {
-        console.log(err.status);
         alert(err.message);
       },
     );

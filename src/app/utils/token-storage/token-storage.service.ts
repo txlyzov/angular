@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subscriber } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY = 'AuthToken';
 const LOGIN_KEY = 'UserLogin';

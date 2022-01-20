@@ -15,7 +15,13 @@ export class ImagesService {
 
   public getPublicImages(): Observable<ImageInterface[]> {
     return this.http.get<ImageInterface[]>(
-      `${this.apiServerUrl}/${this.section}`,
+      `${this.apiServerUrl}/${this.section}/all`,
+    );
+  }
+
+  public getUserImages(): Observable<ImageInterface[]> {
+    return this.http.get<ImageInterface[]>(
+      `${this.apiServerUrl}/${this.section}/user`,
     );
   }
 

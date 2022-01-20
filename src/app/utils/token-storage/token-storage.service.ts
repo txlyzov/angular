@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY = 'AuthToken';
 const LOGIN_KEY = 'UserLogin';
-//const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root',

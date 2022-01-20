@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ImageInterface } from 'src/app/models/image-interface';
+import { ImageInterface } from 'src/app/models/table-models/image-interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 

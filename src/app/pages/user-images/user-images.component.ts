@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageInterface } from 'src/app/models/image-interface';
+import { ImageInterface } from 'src/app/models/table-models/image-interface';
 import { ImagesService } from 'src/app/services/images/images.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -23,8 +23,8 @@ export class UserImagesComponent implements OnInit {
       (response: ImageInterface[]) => {
         this.images = response;
       },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+      (err: HttpErrorResponse) => {
+        alert(err.message);
       },
     );
   }

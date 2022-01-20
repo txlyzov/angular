@@ -26,21 +26,16 @@ export class LoginComponent implements OnInit {
       login: '',
       password: '',
     });
-    if (this.tokenStorageService.getToken()) {
+    if (this.tokenStorageService.getObservableToken()) {
       this.isLoggedIn = true;
-      //this.roles = this.tokenStorage.getAuthorities();
     }
   }
 
   submit(): void {
-    //console.log(this.form.getRawValue());
     this.authService.loginUser(this.form.getRawValue()).subscribe(
       (res) => {
-        //console.log(res);
-
         this.tokenStorageService.saveToken(res.token);
         this.tokenStorageService.saveLogin(res.login);
-        //this.tokenStorage.saveAuthorities(res.roles);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
@@ -54,8 +49,6 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage() {
-    //this.authService.headerUpdate();
     this.router.navigate(['/']);
-    //window.location.reload();
   }
 }

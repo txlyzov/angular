@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.token$ = this.tokenStorageService.getToken();
-    this.login$ = this.tokenStorageService.getLogin();
+    this.token$ = this.tokenStorageService.getObservableToken();
+    this.login$ = this.tokenStorageService.getObservableLogin();
   }
 
   logout() {

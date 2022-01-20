@@ -27,7 +27,6 @@
 
         <hr class="mb-3 dropdown-divider" style="border-color:white;">
         <div *ngIf="!(token$ | async); else loggedOut">
-            
             <button type="button" class="btn navbar-btn btn-outline-light me-4" routerLink="/login">Login</button>
             <button type="button" class="btn navbar-btn btn-warning" routerLink="/register">Sign-up</button>
         </div>

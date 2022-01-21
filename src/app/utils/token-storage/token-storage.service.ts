@@ -22,6 +22,10 @@ export class TokenStorageService {
     return this.login.asObservable();
   }
 
+  getToken() {
+    return this.token;
+  }
+
   signOut() {
     window.localStorage.clear();
     this.token.next(window.localStorage.getItem(TOKEN_KEY));

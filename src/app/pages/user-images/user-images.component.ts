@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageInterface } from 'src/app/models/table-models/image-interface';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ImagesService } from 'src/app/services/images/images.service';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { Router } from '@angular/router';
@@ -27,6 +26,7 @@ export class UserImagesComponent implements OnInit {
 
   public getAllImages(): void {
     const token = this.tokenStorageService.getToken().getValue();
+
     if (token) {
       this.userImagesService.getUserImages(token).subscribe(
         (response: ImageInterface[]) => {
@@ -51,7 +51,10 @@ export class UserImagesComponent implements OnInit {
     button.setAttribute('data-toggle', 'modal');
 
     if (model.mode === 'delete') {
-      if (model.image) this.imageToDelete = model.image;
+      if (model.image) {
+        this.imageToDelete = model.image;
+      }
+
       button.setAttribute('data-target', '#deleteImageModal');
     }
 

@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TokenStorageService } from '../utils/token-storage/token-storage.service';
 
@@ -25,9 +19,11 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     const token = this.tokenStorageService.getToken().getValue();
+
     if (token && this.regex.test(token)) {
       return true;
     }
+
     this.router.navigate(['/login']);
 
     return false;

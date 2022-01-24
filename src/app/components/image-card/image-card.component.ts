@@ -20,6 +20,8 @@ export class ImageCardComponent {
   }
 
   public openLink(url: string | undefined) {
-    if (url) window.open(url, '_blank');
+    if (url) {
+      window.open(url, '_blank');
+    }
   }
 }

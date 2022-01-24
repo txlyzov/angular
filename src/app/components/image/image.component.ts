@@ -10,6 +10,8 @@ export class ImageComponent {
   @Input() image: ImageInterface | undefined;
 
   public openLink(url: string | undefined) {
-    if (url) window.open(url, '_blank');
+    if (url) {
+      window.open(url, '_blank');
+    }
   }
 }

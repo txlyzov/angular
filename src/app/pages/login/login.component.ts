@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       login: '',
       password: '',
     });
+
     if (this.tokenStorageService.getObservableToken()) {
       this.isLoggedIn = true;
     }

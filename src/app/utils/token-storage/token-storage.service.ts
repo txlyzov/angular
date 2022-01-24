@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY = 'AuthToken';
 const LOGIN_KEY = 'UserLogin';
-//const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +20,10 @@ export class TokenStorageService {
   }
   getObservableLogin() {
     return this.login.asObservable();
+  }
+
+  getToken() {
+    return this.token;
   }
 
   signOut() {

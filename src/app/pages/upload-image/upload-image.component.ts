@@ -1,12 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  Validators,
-} from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { Router } from '@angular/router';
 import { ImageInterface } from 'src/app/models/table-models/image-interface';
@@ -18,61 +11,42 @@ import { ImagesService } from 'src/app/services/images/images.service';
 })
 export class UploadImageComponent {
   image: ImageInterface = {
-    name: 'Test',
-    url: 'https://techrocks.ru/wp-content/uploads/2019/02/code.jpg',
-    description: 'for test',
+    url: 'https://media1.giphy.com/media/r31CDVGv8RRRbZPU6r/giphy.gif',
   };
-  form!: FormGroup;
-  // form = new FormGroup({
-  //   imageName: new FormControl('', Validators.required),
-  //   imageDescription: new FormControl('', Validators.required),
-  //   isPrivate: new FormControl('', Validators.required),
-  // });
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
+  form = new FormGroup({
+    imageName: new FormControl('', Validators.required),
+    imageUrl: new FormControl('', Validators.required),
+    imageDescription: new FormControl(null),
+    isPrivate: new FormControl(false),
+  });
 
   constructor(
-    private formBuilder: FormBuilder,
     private imagesService: ImagesService,
     private tokenStorageService: TokenStorageService,
     private router: Router,
   ) {}
-  ngOnInit(): void {
-    // this.form = this.formBuilder.group({
-    //   imageName: '',
-    //   imageDescription: '',
-    //   isPrivate: false,
-    // });
-    this.form = new FormGroup({
-      imageName: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(1),
-      ]),
-      imageDescription: new FormControl(null, Validators.required),
-      isPrivate: new FormControl(null, Validators.required),
-    });
-    // if (this.tokenStorageService.getObservableToken()) {
-    //   this.isLoggedIn = true;
-    // }
+
+  // get imageName() {
+  //   return this.form.get('imageName');
+  // }
+  // get imageUrl() {
+  //   return this.form.get('imageUrl');
+  // }
+
+  previewName(name: string) {
+    this.image.name = name;
+  }
+
+  previewLink(link: string) {
+    this.image.url = link;
+  }
+
+  previewDescription(description: string) {
+    this.image.description = description;
   }
 
   submit(): void {
-    // console.log(this.form.getRawValue());
-    console.log(this.form.value.imageName);
-    // this.imagesService.createImage(this.form.getRawValue()).subscribe(
-    //   (res) => {
-    //     console.log(res);
-    //     // this.tokenStorageService.saveToken(res.token);
-    //     // this.tokenStorageService.saveLogin(res.login);
-    //     // this.isLoginFailed = false;
-    //     // this.isLoggedIn = true;
-    //     //this.reloadPage();
-    //   },
-    //   (err: HttpErrorResponse) => {
-    //     alert(err.message);
-    //   },
-    // );
+    console.log(this.form.value);
   }
 
   reloadPage() {

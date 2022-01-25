@@ -1,33 +1,33 @@
-<div class="container">
+<div class="background-image">
+    <div class="container">
 
-    <div class="row">
-        <div class="col my-auto card">
-            <h4>Image preview</h4>
-            <app-image class="" [image]=image></app-image>
-        </div>
-
-        <div class="col">
-            <div class="card card-container">
-                <img id="profile-img" class="profile-img-card" src="https://www.freeiconspng.com/thumbs/plus-icon/plus-sign-icon-31.png" />
-                <form [formGroup]="form" (submit)="submit()" class="mt-4 form-signin">
-                    <input formControlName="imageName" type="text" id="inputImageName" class="form-control" placeholder="Image name" required autofocus/>
-                    <input formControlName="imageDescription" type="text" id="inputImageDescription" class="form-control" placeholder="Image description" required/>
-                    <!-- <div class="input-group has-validation">
-                        <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                        <div class="invalid-feedback">
-                          Please choose a username.
+        <div class="row">
+            <div class="col my-auto card preview border-2 border-secondary rounded">
+                <h4>Image preview</h4>
+                <app-image class="" [image]=image></app-image>
+            </div>
+    
+            <div class="col">
+                <div class="card card-container border-2 border-secondary rounded">
+                    <img id="icon" class="icon-card" src="https://www.freeiconspng.com/thumbs/plus-icon/plus-sign-icon-31.png" />
+                    <form [formGroup]="form" (ngSubmit)="submit()" class="mt-4 form">
+                        <input (ngModelChange)="previewName($event)" formControlName="imageName" type="text" id="inputImageName" class="form-control" placeholder="Image name (!)"/>
+                        <input (ngModelChange)="previewLink($event)" formControlName="imageUrl" type="text" id="inputImageUrl" class="form-control" placeholder="Image url (!)"/>
+                        <!-- <span *ngIf="form.controls['imageUrl'].dirty && form.hasError('required','imageUrl')">Required </span> -->
+                        <!-- <span *ngIf="imageUrl && imageUrl.invalid">Required </span> -->
+                        <input (ngModelChange)="previewDescription($event)" formControlName="imageDescription" type="text" id="inputImageDescription" class="form-control" placeholder="Image description"/>
+    
+                        <div id="privacy" class="checkbox mb-2">
+                            <input formControlName="isPrivate" type="checkbox"/>
+                            <label class="ms-1">Is private image</label>
                         </div>
-                      </div> -->
-
-                    <div id="privacy" class="checkbox mb-2">
-                        <input formControlName="isPrivate" type="checkbox"/>
-                        <label class="ms-1">Is private image</label>
-                    </div>
-                    
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-                </form>
+                        
+                        <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block btn-submit" type="submit">Upload</button>
+                    </form>
+                </div>
             </div>
         </div>
+        
     </div>
-    
 </div>
+

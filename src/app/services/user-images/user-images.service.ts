@@ -21,9 +21,6 @@ export class UserImagesService {
     image: ImageInterface,
     token: string,
   ): Observable<ImageInterface> {
-    console.log(image);
-    console.log(token);
-
     return this.http.post(`${this.apiServerUrl}/${this.section}`, image, {
       headers: new HttpHeaders().set('AuthToken', token),
     });
@@ -36,5 +33,27 @@ export class UserImagesService {
         headers: new HttpHeaders().set('AuthToken', token),
       },
     );
+  }
+
+  public getUserImage(
+    token: string,
+    imageId: string,
+  ): Observable<ImageInterface> {
+    return this.http.get<ImageInterface>(
+      `${this.apiServerUrl}/${this.section}/${imageId}`,
+      {
+        headers: new HttpHeaders().set('AuthToken', token),
+      },
+    );
+  }
+
+  public updateUserImage(
+    token: string,
+    image: ImageInterface,
+  ): Observable<string> {
+    return this.http.put(`${this.apiServerUrl}/${this.section}`, image, {
+      headers: new HttpHeaders().set('AuthToken', token),
+      responseType: 'text',
+    });
   }
 }

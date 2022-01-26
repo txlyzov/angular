@@ -55,6 +55,7 @@ export class UploadImageComponent {
       description: formData.imageDescription,
       isPrivate: formData.isPrivate,
     };
+
     if (token) {
       this.userImageService.createImage(imageData, token).subscribe(
         () => {

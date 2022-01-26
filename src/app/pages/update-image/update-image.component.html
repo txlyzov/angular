@@ -1,0 +1,33 @@
+<div class="background-image">
+    <div class="container">
+
+        <div class="row">
+            <div class="col my-auto card preview border-2 border-secondary rounded">
+                <h4>Image preview</h4>
+                <app-image class="" [image]=image></app-image>
+            </div>
+    
+            <div class="col">
+                <div class="card card-container border-2 border-secondary rounded">
+                    <img id="icon" class="icon-card" src="https://www.clipartmax.com/png/full/90-907859_wl-writing-thin-edit-icon.png" />
+                    <form [formGroup]="form" (ngSubmit)="submit()" class="mt-4 form">
+                        <input (ngModelChange)="previewName($event)" formControlName="imageName" type="text" id="inputImageName" class="form-control" placeholder="Image name (!)"/>
+                        <!-- <input (ngModelChange)="previewLink($event)" formControlName="imageUrl" type="text" id="inputImageUrl" class="form-control" placeholder="Image url (!)"/> -->
+                        <!-- <span *ngIf="form.controls['imageUrl'].dirty && form.hasError('required','imageUrl')">Required </span> -->
+                        <!-- <span *ngIf="imageUrl && imageUrl.invalid">Required </span> -->
+                        <input (ngModelChange)="previewDescription($event)" formControlName="imageDescription" type="text" id="inputImageDescription" class="form-control" placeholder="Image description"/>
+    
+                        <div id="privacy" class="checkbox mb-2">
+                            <input formControlName="isPrivate" type="checkbox"/>
+                            <label class="ms-1">Is private image</label>
+                        </div>
+                        <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block btn-submit" type="submit">Update</button>
+                    </form>
+                    <button class="btn btn-lg btn-primary btn-block btn-submit" routerLink="/images-control">Back to your pictures</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+

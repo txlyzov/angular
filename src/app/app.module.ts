@@ -20,6 +20,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UploadImageComponent } from './pages/upload-image';
 import { Testing123Component } from './testing123/testing123.component';
+import { UpdateImageComponent } from './pages/update-image';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { Testing123Component } from './testing123/testing123.component';
     HeaderComponent,
     FooterComponent,
     UploadImageComponent,
+    UpdateImageComponent,
     Testing123Component,
   ],
   imports: [

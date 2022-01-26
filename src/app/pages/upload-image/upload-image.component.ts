@@ -3,7 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { Router } from '@angular/router';
 import { ImageInterface } from 'src/app/models/table-models/image-interface';
-import { ImagesService } from 'src/app/services/images/images.service';
+import { UserImagesService } from 'src/app/services/user-images/user-images.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   templateUrl: 'upload-image.component.html',
@@ -21,7 +22,7 @@ export class UploadImageComponent {
   });
 
   constructor(
-    private imagesService: ImagesService,
+    private userImageService: UserImagesService,
     private tokenStorageService: TokenStorageService,
     private router: Router,
   ) {}
@@ -46,10 +47,27 @@ export class UploadImageComponent {
   }
 
   submit(): void {
-    console.log(this.form.value);
-  }
-
-  reloadPage() {
-    this.router.navigate(['/']);
+    const token = this.tokenStorageService.getToken().getValue();
+    const formData = this.form.value;
+    const imageData = {
+      url: formData.imageUrl,
+      name: formData.imageName,
+      description: formData.imageDescription,
+      isPrivate: formData.isPrivate,
+    };
+    if (token) {
+      this.userImageService.createImage(imageData, token).subscribe(
+        () => {
+          this.router.navigate(['/images-control']);
+        },
+        (err: HttpErrorResponse) => {
+          alert(err.message);
+        },
+      );
+    } else {
+      this.tokenStorageService.signOut();
+      alert('Auth error');
+      this.router.navigate(['/login']);
+    }
   }
 }

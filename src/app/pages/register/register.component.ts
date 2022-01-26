@@ -26,7 +26,7 @@ export class RegisterComponent {
   }
 
   submit(): void {
-    if (this.form.value.password == this.form.value.confirmPassword) {
+    if (this.dataCheck()) {
       this.authService.registerUser(this.form.getRawValue()).subscribe(
         () => {
           this.router.navigate(['/login']);
@@ -36,5 +36,9 @@ export class RegisterComponent {
         },
       );
     } else alert('Passwords are different.');
+  }
+
+  dataCheck() {
+    return this.form.value.password === this.form.value.confirmPassword;
   }
 }

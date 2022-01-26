@@ -1,5 +1,8 @@
 .background-image{
-    background-image: url("https://www.makinggames.biz/wp-content/uploads/2020/06/Frostpunk_-_The_Last_Autumn_screenshot_01.jpg");
+    background-image: url("https://i.pinimg.com/originals/58/6e/51/586e51559dc40f48cd8ce65af9c1522f.gif");
+    /* background-image: url("https://www.makinggames.biz/wp-content/uploads/2020/06/Frostpunk_-_The_Last_Autumn_screenshot_01.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 92vh;
 }
 
@@ -89,5 +92,5 @@
 .btn.btn-submit:hover,
 .btn.btn-submit:active,
 .btn.btn-submit:focus {
-    background-color: rgb(8, 204, 162);
+    background-color: rgb(13, 185, 148);
 }

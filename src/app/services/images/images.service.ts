@@ -13,15 +13,6 @@ export class ImagesService {
 
   constructor(private http: HttpClient) {}
 
-  public createImage(image: ImageInterface): Observable<ImageInterface> {
-    return this.http.post(
-      `${this.apiServerUrl}/${this.section}`,
-      image, //{
-      //responseType: 'text',
-      //}
-    );
-  }
-
   public getPublicImages(): Observable<ImageInterface[]> {
     return this.http.get<ImageInterface[]>(
       `${this.apiServerUrl}/${this.section}`,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageInterface } from 'src/app/models/table-models/image-interface';
+import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { ImagesService } from 'src/app/services/images/images.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['public-images.component.css'],
 })
 export class PublicImagesComponent implements OnInit {
-  public images!: ImageInterface[];
+  public images!: ImageFromDatabaseInterface[];
 
   constructor(private imageService: ImagesService) {}
 
@@ -18,7 +18,7 @@ export class PublicImagesComponent implements OnInit {
 
   public getAllImages(): void {
     this.imageService.getPublicImages().subscribe(
-      (response: ImageInterface[]) => {
+      (response: ImageFromDatabaseInterface[]) => {
         this.images = response;
       },
       (err: HttpErrorResponse) => {

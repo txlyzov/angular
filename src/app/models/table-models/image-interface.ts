@@ -1,10 +1,10 @@
-export interface ImageInterface {
+export interface ImageFromDatabaseInterface {
   id: number;
   userId: number;
   name: string;
   url: string;
   isPrivate: boolean;
-  description: string;
+  description: string | null;
   createdAt: Date;
   updatedAt: Date;
 }

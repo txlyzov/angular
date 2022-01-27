@@ -1,6 +1,6 @@
 <div class="image-container text-center" (click)="openLink(image?.url)">
 
-    <img src="{{image?.url}}" class="carg-img-top img-fluid rounded"/>
+    <img (load)="onSuccess()" (error)="onFailed()" src="{{image?.url}}" class="carg-img-top img-fluid rounded"/>
     
     <div class="image-overlay">
         <div class="image-text">
@@ -8,6 +8,9 @@
         </div>
         <div class="image-text">
             <h4>{{image?.name}}</h4>
+        </div>
+        <div class="image-text">
+            <h5>{{image?.description}}</h5>
         </div>
     </div>
 

@@ -18,6 +18,8 @@ import { SelectComponent } from './components/select/select.component';
 import { GalleryElementsBarComponent } from './components/gallery-elements-bar/gallery-elements-bar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { UploadImageComponent } from './pages/upload-image';
+import { UpdateImageComponent } from './pages/update-image';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { FooterComponent } from './components/footer/footer.component';
     GalleryElementsBarComponent,
     HeaderComponent,
     FooterComponent,
+    UploadImageComponent,
+    UpdateImageComponent,
   ],
   imports: [
     BrowserModule,

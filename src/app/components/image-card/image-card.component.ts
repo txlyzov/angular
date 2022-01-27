@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ImageInterface } from 'src/app/models/table-models/image-interface';
+import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { AnyType } from '../../utils/types/any-type';
 
 @Component({
@@ -9,11 +9,11 @@ import { AnyType } from '../../utils/types/any-type';
 })
 export class ImageCardComponent {
   @Input() isOnlyDisplaying: boolean | undefined;
-  @Input() image: ImageInterface | undefined;
+  @Input() image: ImageFromDatabaseInterface | undefined;
   @Output() onOpenModal: EventEmitter<AnyType> = new EventEmitter();
 
   public setParamsToImageDeleteModal(
-    image: ImageInterface | undefined,
+    image: ImageFromDatabaseInterface | undefined,
     mode: string,
   ) {
     this.onOpenModal.emit({ image, mode });

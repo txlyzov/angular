@@ -6,6 +6,8 @@ import { RegisterComponent } from './pages/register';
 import { LoginComponent } from './pages/login';
 import { UserImagesComponent } from './pages/user-images';
 import { AuthGuard } from './guards/auth.guard';
+import { UploadImageComponent } from './pages/upload-image';
+import { UpdateImageComponent } from './pages/update-image';
 
 const routes: Routes = [
   { path: '', component: PublicImagesComponent },
@@ -14,6 +16,16 @@ const routes: Routes = [
   {
     path: 'images-control',
     component: UserImagesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'new-image',
+    component: UploadImageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'update-image/:id',
+    component: UpdateImageComponent,
     canActivate: [AuthGuard],
   },
 

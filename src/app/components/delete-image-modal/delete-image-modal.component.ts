@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ImageInterface } from 'src/app/models/table-models/image-interface';
+import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { ImagesService } from 'src/app/services/images/images.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AnyType } from 'src/app/utils/types/any-type';
@@ -9,7 +9,7 @@ import { AnyType } from 'src/app/utils/types/any-type';
   templateUrl: './delete-image-modal.component.html',
 })
 export class DeleteImageModalComponent {
-  @Input() image: ImageInterface | undefined;
+  @Input() image: ImageFromDatabaseInterface | undefined;
   @Output() refreshPageData: EventEmitter<AnyType> = new EventEmitter();
 
   constructor(private imageService: ImagesService) {}

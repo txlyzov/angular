@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageInterface } from 'src/app/models/table-models/image-interface';
+import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { Router } from '@angular/router';
+import { routes } from 'src/app/utils/consts/consts';
 
 @Component({
   templateUrl: 'user-images.component.html',
   styleUrls: ['user-images.component.css'],
 })
 export class UserImagesComponent implements OnInit {
-  public images!: ImageInterface[];
-  public imageToEdit!: ImageInterface;
-  public imageToDelete!: ImageInterface;
+  public images!: ImageFromDatabaseInterface[];
+  public imageToEdit!: ImageFromDatabaseInterface;
+  public imageToDelete!: ImageFromDatabaseInterface;
 
   constructor(
     private userImagesService: UserImagesService,
@@ -29,7 +30,7 @@ export class UserImagesComponent implements OnInit {
 
     if (token) {
       this.userImagesService.getUserImages(token).subscribe(
-        (response: ImageInterface[]) => {
+        (response: ImageFromDatabaseInterface[]) => {
           this.images = response;
         },
         (err: HttpErrorResponse) => {
@@ -39,11 +40,14 @@ export class UserImagesComponent implements OnInit {
     } else {
       this.tokenStorageService.signOut();
       alert('Auth error');
-      this.router.navigate(['/login']);
+      this.router.navigate([routes.LOGIN]);
     }
   }
 
-  public onOpenModal(model: { image: ImageInterface | null; mode: string }) {
+  public onOpenModal(model: {
+    image: ImageFromDatabaseInterface | null;
+    mode: string;
+  }) {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
     button.type = 'button';

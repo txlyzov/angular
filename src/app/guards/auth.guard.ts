@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { routes } from '../utils/consts/consts';
 import { TokenStorageService } from '../utils/token-storage/token-storage.service';
 
 @Injectable({
@@ -24,7 +25,7 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/login']);
+    this.router.navigate([routes.LOGIN]);
 
     return false;
   }

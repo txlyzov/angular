@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { Router } from '@angular/router';
+import { routes } from 'src/app/utils/consts/consts';
 
 @Component({
   templateUrl: 'login.component.html',
@@ -35,6 +36,6 @@ export class LoginComponent {
   }
 
   reloadPage() {
-    this.router.navigate(['/']);
+    this.router.navigate([routes.PUBLIC_IMAGES]);
   }
 }

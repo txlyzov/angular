@@ -19,7 +19,6 @@ import { GalleryElementsBarComponent } from './components/gallery-elements-bar/g
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UploadImageComponent } from './pages/upload-image';
-import { Testing123Component } from './testing123/testing123.component';
 import { UpdateImageComponent } from './pages/update-image';
 
 @NgModule({
@@ -39,7 +38,6 @@ import { UpdateImageComponent } from './pages/update-image';
     FooterComponent,
     UploadImageComponent,
     UpdateImageComponent,
-    Testing123Component,
   ],
   imports: [
     BrowserModule,

@@ -2,18 +2,22 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { Router } from '@angular/router';
-import { ImageInterface } from 'src/app/models/table-models/image-interface';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { routes } from 'src/app/utils/consts/consts';
 
 @Component({
   templateUrl: 'upload-image.component.html',
   styleUrls: ['upload-image.component.css'],
 })
 export class UploadImageComponent {
-  image: ImageInterface = {
+  image = {
+    name: '',
     url: 'https://media1.giphy.com/media/r31CDVGv8RRRbZPU6r/giphy.gif',
+    description: '',
+    isPrivate: false,
   };
+  isImageUrlValid = false;
   form = new FormGroup({
     imageName: new FormControl('', Validators.required),
     imageUrl: new FormControl('', Validators.required),
@@ -27,12 +31,12 @@ export class UploadImageComponent {
     private router: Router,
   ) {}
 
-  // get imageName() {
-  //   return this.form.get('imageName');
-  // }
-  // get imageUrl() {
-  //   return this.form.get('imageUrl');
-  // }
+  get imageName() {
+    return this.form.get('imageName');
+  }
+  get imageUrl() {
+    return this.form.get('imageUrl');
+  }
 
   previewName(name: string) {
     this.image.name = name;
@@ -46,6 +50,10 @@ export class UploadImageComponent {
     this.image.description = description;
   }
 
+  setImageUrlValidStatus(status: boolean) {
+    this.isImageUrlValid = status;
+  }
+
   submit(): void {
     const token = this.tokenStorageService.getToken().getValue();
     const formData = this.form.value;
@@ -56,19 +64,27 @@ export class UploadImageComponent {
       isPrivate: formData.isPrivate,
     };
 
-    if (token) {
-      this.userImageService.createImage(imageData, token).subscribe(
-        () => {
-          this.router.navigate(['/images-control']);
-        },
-        (err: HttpErrorResponse) => {
-          alert(err.message);
-        },
-      );
-    } else {
+    if (!token) {
       this.tokenStorageService.signOut();
       alert('Auth error');
-      this.router.navigate(['/login']);
+      this.router.navigate([routes.LOGIN]);
+
+      return;
     }
+
+    if (!this.isImageUrlValid) {
+      alert('Image link is broken');
+
+      return;
+    }
+
+    this.userImageService.createImage(imageData, token).subscribe(
+      () => {
+        this.router.navigate([routes.USER_IMAGES]);
+      },
+      (err: HttpErrorResponse) => {
+        alert(err.message);
+      },
+    );
   }
 }

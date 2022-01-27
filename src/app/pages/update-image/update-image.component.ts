@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpStatusCode } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ImageInterface } from 'src/app/models/table-models/image-interface';
+import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { routes } from 'src/app/utils/consts/consts';
 
 @Component({
   templateUrl: 'update-image.component.html',
   styleUrls: ['update-image.component.css'],
 })
 export class UpdateImageComponent implements OnInit {
-  image!: ImageInterface; // = {
-  //   url: 'https://media1.giphy.com/media/r31CDVGv8RRRbZPU6r/giphy.gif',
-  // };
+  image!: ImageFromDatabaseInterface;
   form = new FormGroup({
     imageName: new FormControl(null, Validators.required),
     imageDescription: new FormControl(null),
@@ -22,12 +20,15 @@ export class UpdateImageComponent implements OnInit {
   });
 
   constructor(
-    //private httpStatusCode: HttpStatusCode,
     private userImageService: UserImagesService,
     private tokenStorageService: TokenStorageService,
     private router: Router,
     private route: ActivatedRoute,
   ) {}
+
+  get imageName() {
+    return this.form.get('imageName');
+  }
 
   ngOnInit(): void {
     const token = this.tokenStorageService.getToken().getValue();
@@ -48,16 +49,9 @@ export class UpdateImageComponent implements OnInit {
     } else {
       this.tokenStorageService.signOut();
       alert('Auth error');
-      this.router.navigate(['/login']);
+      this.router.navigate([routes.LOGIN]);
     }
   }
-
-  // get imageName() {
-  //   return this.form.get('imageName');
-  // }
-  // get imageUrl() {
-  //   return this.form.get('imageUrl');
-  // }
 
   previewName(name: string) {
     this.image.name = name;
@@ -76,31 +70,32 @@ export class UpdateImageComponent implements OnInit {
     const formData = this.form.value;
     const id = this.route.snapshot.paramMap.get('id');
 
-    if (token) {
-      if (id) {
-        const imageData: ImageInterface = {
-          id: parseInt(id),
-          name: formData.imageName,
-          description: formData.imageDescription,
-          isPrivate: formData.isPrivate,
-        };
-        this.userImageService.updateUserImage(token, imageData).subscribe(
-          (res) => {
-            console.log(res);
-            this.router.navigate(['/images-control']);
-          },
-          (err: HttpErrorResponse) => {
-            alert(err.message);
-          },
-        );
-      } else {
-        alert('Link error');
-        this.router.navigate(['/image-control']);
-      }
-    } else {
+    if (!token) {
       this.tokenStorageService.signOut();
       alert('Auth error');
-      this.router.navigate(['/login']);
+      this.router.navigate([routes.LOGIN]);
+
+      return;
     }
+
+    if (!id) {
+      alert('Link error');
+      this.router.navigate([routes.USER_IMAGES]);
+
+      return;
+    }
+
+    this.image.id = parseInt(id);
+    this.image.name = formData.imageName;
+    this.image.description = formData.imageDescription;
+    this.image.isPrivate = formData.isPrivate;
+    this.userImageService.updateUserImage(token, this.image).subscribe(
+      () => {
+        this.router.navigate([routes.USER_IMAGES]);
+      },
+      (err: HttpErrorResponse) => {
+        alert(err.message);
+      },
+    );
   }
 }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { routes } from 'src/app/utils/consts/consts';
 
 @Component({
   templateUrl: 'register.component.html',
@@ -29,7 +30,7 @@ export class RegisterComponent {
     if (this.dataCheck()) {
       this.authService.registerUser(this.form.getRawValue()).subscribe(
         () => {
-          this.router.navigate(['/login']);
+          this.router.navigate([routes.LOGIN]);
         },
         (err: HttpErrorResponse) => {
           alert(err.message);

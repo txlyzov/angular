@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ImageInterface } from 'src/app/models/table-models/image-interface';
+import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ImageInterface } from 'src/app/models/table-models/image-creation-interface';
+
+const TOKEN_KEY = 'AuthToken';
 
 @Injectable({
   providedIn: 'root',
@@ -20,17 +23,23 @@ export class UserImagesService {
   public createImage(
     image: ImageInterface,
     token: string,
-  ): Observable<ImageInterface> {
-    return this.http.post(`${this.apiServerUrl}/${this.section}`, image, {
-      headers: new HttpHeaders().set('AuthToken', token),
-    });
+  ): Observable<ImageFromDatabaseInterface> {
+    return this.http.post<ImageFromDatabaseInterface>(
+      `${this.apiServerUrl}/${this.section}`,
+      image,
+      {
+        headers: new HttpHeaders().set(TOKEN_KEY, token),
+      },
+    );
   }
 
-  public getUserImages(token: string): Observable<ImageInterface[]> {
-    return this.http.get<ImageInterface[]>(
+  public getUserImages(
+    token: string,
+  ): Observable<ImageFromDatabaseInterface[]> {
+    return this.http.get<ImageFromDatabaseInterface[]>(
       `${this.apiServerUrl}/${this.section}`,
       {
-        headers: new HttpHeaders().set('AuthToken', token),
+        headers: new HttpHeaders().set(TOKEN_KEY, token),
       },
     );
   }
@@ -38,21 +47,21 @@ export class UserImagesService {
   public getUserImage(
     token: string,
     imageId: string,
-  ): Observable<ImageInterface> {
-    return this.http.get<ImageInterface>(
+  ): Observable<ImageFromDatabaseInterface> {
+    return this.http.get<ImageFromDatabaseInterface>(
       `${this.apiServerUrl}/${this.section}/${imageId}`,
       {
-        headers: new HttpHeaders().set('AuthToken', token),
+        headers: new HttpHeaders().set(TOKEN_KEY, token),
       },
     );
   }
 
   public updateUserImage(
     token: string,
-    image: ImageInterface,
+    image: ImageFromDatabaseInterface,
   ): Observable<string> {
     return this.http.put(`${this.apiServerUrl}/${this.section}`, image, {
-      headers: new HttpHeaders().set('AuthToken', token),
+      headers: new HttpHeaders().set(TOKEN_KEY, token),
       responseType: 'text',
     });
   }

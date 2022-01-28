@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 
@@ -31,16 +31,18 @@ export class UserImagesComponent implements OnInit {
           this.images = response;
         },
         (err: HttpErrorResponse) => {
-          if (err.status === 403) {
-            this.tokenStorageService.errorSignOut();
-          } else {
-            alert(err.message);
+          if (err.status === HttpStatusCode.Forbidden) {
+            return this.tokenStorageService.errorSignOut();
           }
+
+          return alert(err.message);
         },
       );
-    } else {
-      this.tokenStorageService.errorSignOut();
+
+      return;
     }
+
+    return this.tokenStorageService.errorSignOut();
   }
 
   public onOpenModal(model: {

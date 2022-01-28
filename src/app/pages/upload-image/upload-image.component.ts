@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { Router } from '@angular/router';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { routes } from 'src/app/utils/consts/consts';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { errorsTexts, routes } from 'src/app/utils/consts/consts';
 
 @Component({
   templateUrl: 'upload-image.component.html',
@@ -71,7 +71,7 @@ export class UploadImageComponent {
     }
 
     if (!this.isImageUrlValid) {
-      alert('Image link is broken');
+      alert(errorsTexts.IMG_LINK_ERROR);
 
       return;
     }
@@ -81,11 +81,11 @@ export class UploadImageComponent {
         this.router.navigate([routes.USER_IMAGES]);
       },
       (err: HttpErrorResponse) => {
-        if (err.status === 403) {
-          this.tokenStorageService.errorSignOut();
-        } else {
-          alert(err.message);
+        if (err.status === HttpStatusCode.Forbidden) {
+          return this.tokenStorageService.errorSignOut();
         }
+
+        return alert(err.message);
       },
     );
   }

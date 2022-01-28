@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { routes } from 'src/app/utils/consts/consts';
+import { errorsTexts, routes } from 'src/app/utils/consts/consts';
 
 @Component({
   templateUrl: 'register.component.html',
@@ -36,7 +36,11 @@ export class RegisterComponent {
           alert(err.message);
         },
       );
-    } else alert('Passwords are different.');
+
+      return;
+    }
+
+    return alert(errorsTexts.DIFFERENT_PASSWORDS);
   }
 
   dataCheck() {

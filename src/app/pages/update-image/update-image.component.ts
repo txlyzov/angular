@@ -4,8 +4,8 @@ import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.s
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { routes } from 'src/app/utils/consts/consts';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { errorsTexts, routes } from 'src/app/utils/consts/consts';
 
 @Component({
   templateUrl: 'update-image.component.html',
@@ -43,14 +43,18 @@ export class UpdateImageComponent implements OnInit {
           this.form.get('isPrivate')!.setValue(this.image.isPrivate);
         },
         (err: HttpErrorResponse) => {
-          alert(err.message);
+          if (err.status === HttpStatusCode.Forbidden) {
+            return this.tokenStorageService.errorSignOut();
+          }
+
+          return alert(err.message);
         },
       );
-    } else {
-      this.tokenStorageService.signOut();
-      alert('Auth error');
-      this.router.navigate([routes.LOGIN]);
+
+      return;
     }
+
+    return this.tokenStorageService.errorSignOut();
   }
 
   previewName(name: string) {
@@ -71,15 +75,13 @@ export class UpdateImageComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     if (!token) {
-      this.tokenStorageService.signOut();
-      alert('Auth error');
-      this.router.navigate([routes.LOGIN]);
+      this.tokenStorageService.errorSignOut();
 
       return;
     }
 
     if (!id) {
-      alert('Link error');
+      alert(errorsTexts.IMG_LINK_ERROR);
       this.router.navigate([routes.USER_IMAGES]);
 
       return;
@@ -94,7 +96,11 @@ export class UpdateImageComponent implements OnInit {
         this.router.navigate([routes.USER_IMAGES]);
       },
       (err: HttpErrorResponse) => {
-        alert(err.message);
+        if (err.status === HttpStatusCode.Forbidden) {
+          return this.tokenStorageService.errorSignOut();
+        }
+
+        return alert(err.message);
       },
     );
   }

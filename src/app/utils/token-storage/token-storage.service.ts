@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { routes } from '../consts/consts';
 
 const TOKEN_KEY = 'AuthToken';
 const LOGIN_KEY = 'UserLogin';
@@ -14,6 +16,8 @@ export class TokenStorageService {
   private login = new BehaviorSubject<string | null>(
     window.localStorage.getItem(LOGIN_KEY),
   );
+
+  constructor(private router: Router) {}
 
   getObservableToken() {
     return this.token.asObservable();
@@ -30,6 +34,14 @@ export class TokenStorageService {
     window.localStorage.clear();
     this.token.next(window.localStorage.getItem(TOKEN_KEY));
     this.login.next(window.localStorage.getItem(LOGIN_KEY));
+  }
+
+  errorSignOut() {
+    window.localStorage.clear();
+    this.token.next(window.localStorage.getItem(TOKEN_KEY));
+    this.login.next(window.localStorage.getItem(LOGIN_KEY));
+    alert('Authorisation Error. Re-login needed.');
+    this.router.navigate([routes.LOGIN]);
   }
 
   public saveToken(token: string) {

@@ -3,8 +3,6 @@ import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-in
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
-import { Router } from '@angular/router';
-import { routes } from 'src/app/utils/consts/consts';
 
 @Component({
   templateUrl: 'user-images.component.html',
@@ -18,7 +16,6 @@ export class UserImagesComponent implements OnInit {
   constructor(
     private userImagesService: UserImagesService,
     private tokenStorageService: TokenStorageService,
-    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -34,13 +31,15 @@ export class UserImagesComponent implements OnInit {
           this.images = response;
         },
         (err: HttpErrorResponse) => {
-          alert(err.message);
+          if (err.status === 403) {
+            this.tokenStorageService.errorSignOut();
+          } else {
+            alert(err.message);
+          }
         },
       );
     } else {
-      this.tokenStorageService.signOut();
-      alert('Auth error');
-      this.router.navigate([routes.LOGIN]);
+      this.tokenStorageService.errorSignOut();
     }
   }
 

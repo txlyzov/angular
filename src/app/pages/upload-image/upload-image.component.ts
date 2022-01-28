@@ -65,9 +65,7 @@ export class UploadImageComponent {
     };
 
     if (!token) {
-      this.tokenStorageService.signOut();
-      alert('Auth error');
-      this.router.navigate([routes.LOGIN]);
+      this.tokenStorageService.errorSignOut();
 
       return;
     }
@@ -83,7 +81,11 @@ export class UploadImageComponent {
         this.router.navigate([routes.USER_IMAGES]);
       },
       (err: HttpErrorResponse) => {
-        alert(err.message);
+        if (err.status === 403) {
+          this.tokenStorageService.errorSignOut();
+        } else {
+          alert(err.message);
+        }
       },
     );
   }

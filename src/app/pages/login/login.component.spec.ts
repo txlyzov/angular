@@ -1,21 +1,22 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { DeleteImageModalComponent } from './delete-image-modal.component';
+import { LoginComponent } from './login.component';
 
-describe('DeleteImageModalComponent', () => {
-  let component: DeleteImageModalComponent;
-  let fixture: ComponentFixture<DeleteImageModalComponent>;
+describe('LoginComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      declarations: [DeleteImageModalComponent],
+      imports: [HttpClientModule, RouterTestingModule],
+      declarations: [LoginComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteImageModalComponent);
+    fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

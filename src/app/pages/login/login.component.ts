@@ -25,17 +25,11 @@ export class LoginComponent {
   submit(): void {
     this.authService.loginUser(this.form.getRawValue()).subscribe(
       (res) => {
-        this.tokenStorageService.saveToken(res.token);
-        this.tokenStorageService.saveLogin(res.login);
-        this.reloadPage();
+        this.tokenStorageService.afterLogin(res.token, res.login);
       },
       (err: HttpErrorResponse) => {
         alert(err.message);
       },
     );
-  }
-
-  reloadPage() {
-    this.router.navigate([routes.PUBLIC_IMAGES]);
   }
 }

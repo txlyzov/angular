@@ -44,6 +44,12 @@ export class TokenStorageService {
     this.router.navigate([routes.LOGIN]);
   }
 
+  afterLogin(token: string, login: string) {
+    this.saveToken(token);
+    this.saveLogin(login);
+    this.router.navigate([routes.PUBLIC_IMAGES]);
+  }
+
   public saveToken(token: string) {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);

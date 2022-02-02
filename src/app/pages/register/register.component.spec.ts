@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { testValues as TV } from 'src/app/utils/consts/consts';
+import { componentId as CID } from './register-consts';
 
 import { RegisterComponent } from './register.component';
 
@@ -33,13 +34,21 @@ describe('RegisterComponent', () => {
 
   describe('UI tests', () => {
     it('Sign up button should be pushed with correct form filling', () => {
-      const button = fixture.nativeElement.querySelector('#submitButton');
-      const inputLogin = fixture.nativeElement.querySelector('#inputId');
-      const inputEmail = fixture.nativeElement.querySelector('#inputEmail');
-      const inputPassword =
-        fixture.nativeElement.querySelector('#inputPassword1');
-      const inputPasswordConfirm =
-        fixture.nativeElement.querySelector('#inputPassword2');
+      const button = fixture.nativeElement.querySelector(
+        '#' + CID.SUBMIT_BUTTON,
+      );
+      const inputLogin = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_LOGIN,
+      );
+      const inputEmail = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_EMAIL,
+      );
+      const inputPassword = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD_1,
+      );
+      const inputPasswordConfirm = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD_2,
+      );
 
       spyEvent = spyOn(component, 'submit');
       inputLogin.value = TV.STRING_1;
@@ -58,13 +67,21 @@ describe('RegisterComponent', () => {
     });
 
     it('Sign up button should NOT be pushed without correct form filling (email validation failed)', () => {
-      const button = fixture.nativeElement.querySelector('#submitButton');
-      const inputLogin = fixture.nativeElement.querySelector('#inputId');
-      const inputEmail = fixture.nativeElement.querySelector('#inputEmail');
-      const inputPassword =
-        fixture.nativeElement.querySelector('#inputPassword1');
-      const inputPasswordConfirm =
-        fixture.nativeElement.querySelector('#inputPassword2');
+      const button = fixture.nativeElement.querySelector(
+        '#' + CID.SUBMIT_BUTTON,
+      );
+      const inputLogin = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_LOGIN,
+      );
+      const inputEmail = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_EMAIL,
+      );
+      const inputPassword = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD_1,
+      );
+      const inputPasswordConfirm = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD_2,
+      );
 
       spyEvent = spyOn(component, 'submit');
       inputLogin.value = TV.STRING_1;
@@ -79,19 +96,25 @@ describe('RegisterComponent', () => {
       fixture.detectChanges();
       button.click();
 
-      expect(spyEvent).toHaveBeenCalledTimes(0);
+      expect(spyEvent).not.toHaveBeenCalled();
     });
   });
 
   describe('Logic tests', () => {
     it('Should call authService.registerUser({login,email,password})', () => {
       const authService = TestBed.get(AuthService);
-      const inputLogin = fixture.nativeElement.querySelector('#inputId');
-      const inputEmail = fixture.nativeElement.querySelector('#inputEmail');
-      const inputPassword =
-        fixture.nativeElement.querySelector('#inputPassword1');
-      const inputPasswordConfirm =
-        fixture.nativeElement.querySelector('#inputPassword2');
+      const inputLogin = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_LOGIN,
+      );
+      const inputEmail = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_EMAIL,
+      );
+      const inputPassword = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD_1,
+      );
+      const inputPasswordConfirm = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD_2,
+      );
 
       spyEvent = spyOn(authService, 'registerUser').and.returnValue({
       subscribe: () => {},  // eslint-disable-line
@@ -113,12 +136,18 @@ describe('RegisterComponent', () => {
 
     it('Should not call authService.registerUser({login,email,password}) because of mismatched passwords in form passwords fields', () => {
       const authService = TestBed.get(AuthService);
-      const inputLogin = fixture.nativeElement.querySelector('#inputId');
-      const inputEmail = fixture.nativeElement.querySelector('#inputEmail');
-      const inputPassword =
-        fixture.nativeElement.querySelector('#inputPassword1');
-      const inputPasswordConfirm =
-        fixture.nativeElement.querySelector('#inputPassword2');
+      const inputLogin = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_LOGIN,
+      );
+      const inputEmail = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_EMAIL,
+      );
+      const inputPassword = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD_1,
+      );
+      const inputPasswordConfirm = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD_2,
+      );
 
       spyEvent = spyOn(authService, 'registerUser').and.returnValue({
       subscribe: () => {},  // eslint-disable-line
@@ -135,7 +164,7 @@ describe('RegisterComponent', () => {
       fixture.detectChanges();
       component.submit();
 
-      expect(spyEvent).toHaveBeenCalledTimes(0);
+      expect(spyEvent).not.toHaveBeenCalled();
     });
 
     it('should create component', () => {

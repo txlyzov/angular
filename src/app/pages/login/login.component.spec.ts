@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { testValues as TV } from 'src/app/utils/consts/consts';
+import { componentId as CID } from './login-consts';
 
 import { LoginComponent } from './login.component';
 
@@ -33,10 +34,15 @@ describe('LoginComponent', () => {
 
   describe('UI tests', () => {
     it('Sign up button should be pushed with correct form filling', () => {
-      const button = fixture.nativeElement.querySelector('#submitButton');
-      const inputLogin = fixture.nativeElement.querySelector('#inputId');
-      const inputPassword =
-        fixture.nativeElement.querySelector('#inputPassword1');
+      const button = fixture.nativeElement.querySelector(
+        '#' + CID.SUBMIT_BUTTON,
+      );
+      const inputLogin = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_LOGIN,
+      );
+      const inputPassword = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD,
+      );
 
       spyEvent = spyOn(component, 'submit');
       inputLogin.value = TV.STRING_1;
@@ -51,13 +57,18 @@ describe('LoginComponent', () => {
     });
 
     it('Sign up button should NOT be pushed without correct form filling (empty login field)', () => {
-      const button = fixture.nativeElement.querySelector('#submitButton');
-      const inputLogin = fixture.nativeElement.querySelector('#inputId');
-      const inputPassword =
-        fixture.nativeElement.querySelector('#inputPassword1');
+      const button = fixture.nativeElement.querySelector(
+        '#' + CID.SUBMIT_BUTTON,
+      );
+      const inputLogin = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_LOGIN,
+      );
+      const inputPassword = fixture.nativeElement.querySelector(
+        '#' + CID.INPUT_PASSWORD,
+      );
 
       spyEvent = spyOn(component, 'submit');
-      inputLogin.value = TV.NULL;
+      inputLogin.value = TV.EMPTY_STRING;
       inputPassword.value = TV.STRING_2;
       inputLogin.dispatchEvent(new Event('input'));
       inputPassword.dispatchEvent(new Event('input'));
@@ -65,7 +76,7 @@ describe('LoginComponent', () => {
       fixture.detectChanges();
       button.click();
 
-      expect(spyEvent).toHaveBeenCalledTimes(0);
+      expect(spyEvent).not.toHaveBeenCalled();
     });
   });
 

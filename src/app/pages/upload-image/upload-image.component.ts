@@ -5,12 +5,18 @@ import { Router } from '@angular/router';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { errorsTexts, routes } from 'src/app/utils/consts/consts';
+import { componentId as CID } from './upload-image-consts';
 
 @Component({
   templateUrl: 'upload-image.component.html',
   styleUrls: ['upload-image.component.css'],
 })
 export class UploadImageComponent {
+  inputImageName = CID.INPUT_IMAGE_NAME;
+  inputImageUrl = CID.INPUT_IMAGE_URL;
+  inputImageDescription = CID.INPUT_IMAGE_DESCRIPTION;
+  inputImagePrivacy = CID.INPUT_IMAGE_PRIVACY;
+  submitButton = CID.SUBMIT_BUTTON;
   image = {
     name: '',
     url: 'https://media1.giphy.com/media/r31CDVGv8RRRbZPU6r/giphy.gif',

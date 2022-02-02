@@ -4,7 +4,7 @@
         <img id="icon" class="icon-card" src="https://static.thenounproject.com/png/60319-200.png" />
 
         <form [formGroup]="form" (ngSubmit)="submit()" class="mt-4 form-auth">
-            <input formControlName="login" type="text" id="inputId" class="form-control" placeholder="Create your Login (!)"/>
+            <input formControlName="login" type="text" id="inputLogin" class="form-control" placeholder="Create your Login (!)"/>
             <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Set yout Email address (!)"/>
             <input formControlName="password" type="password" id="inputPassword1" class="form-control" placeholder="Create your Password (!)"/>
             <input formControlName="confirmPassword" type="password" id="inputPassword2" class="form-control" placeholder="And confirm Password (!)"/>
@@ -13,7 +13,7 @@
                 <label class="ms-1">Remember me(NW)</label>
             </div>
 
-            <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block btn-confirm" type="submit">Sign up</button>
+            <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block btn-confirm" type="submit" id="submitButton">Sign up</button>
         </form>
     </div>
 

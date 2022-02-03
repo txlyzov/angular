@@ -1,0 +1,46 @@
+name: Git-workflow
+
+on: [push]
+
+jobs:
+  run-linting-and-testing:
+    name: Run-linting-and-testing
+    runs-on: ubuntu-latest
+    container: node:17.4-buster
+    steps:
+      - name: Checkout-repository
+        uses: actions/checkout@v2
+
+      - name: Cache-Node-Modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-modules-server-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install-chrome
+        run: | 
+          apt-get update
+          apt-get clean
+          apt-get install -y wget 
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+          echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+          apt-get -y update
+          apt-get install -y google-chrome-stable
+
+      - name: Install-chrome-VERSION
+        run: VERSION=`google-chrome --version | egrep -o '[0-9]+.[0-9]+' | head -1` 
+        
+      - name: Pre-test
+        run: |  
+          npm i webdriver-manager@latest -D
+          npm i chromedriver --chromedriver_version=$VERSION -D 
+          export CHROME_BIN=/usr/bin/google-chrome
+
+      - name: Run-tests
+        run: npm run test-git
+
+      - name: Run-linting
+        run: npm run lint

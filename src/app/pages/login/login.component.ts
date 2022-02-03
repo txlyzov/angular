@@ -11,7 +11,7 @@ import { componentId as CID } from './login-consts';
 })
 export class LoginComponent {
   inputLogin = CID.INPUT_LOGIN;
-  inputPassword1 = CID.INPUT_PASSWORD;
+  inputPassword = CID.INPUT_PASSWORD;
   submitButton = CID.SUBMIT_BUTTON;
   form = new FormGroup({
     login: new FormControl(null, Validators.required),

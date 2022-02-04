@@ -26,7 +26,7 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   get password() {
-    return this.form.get('pessword');
+    return this.form.get('password');
   }
   get confirmedPassword() {
     return this.form.get('confirmPassword');

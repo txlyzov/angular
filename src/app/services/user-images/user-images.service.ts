@@ -65,4 +65,11 @@ export class UserImagesService {
       responseType: 'text',
     });
   }
+
+  public deleteUserImage(token: string, imageId: number): Observable<string> {
+    return this.http.delete(`${this.apiServerUrl}/${this.section}/${imageId}`, {
+      headers: new HttpHeaders().set(TOKEN_KEY, token),
+      responseType: 'text',
+    });
+  }
 }

@@ -18,10 +18,4 @@ export class ImagesService {
       `${this.apiServerUrl}/${this.section}`,
     );
   }
-
-  public deleteImage(imageId: number): Observable<string> {
-    return this.http.delete(`${this.apiServerUrl}/${this.section}/${imageId}`, {
-      responseType: 'text',
-    });
-  }
 }

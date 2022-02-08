@@ -5,6 +5,7 @@ export enum routes {
   UPDATE_IMAGE = 'update-image/',
   REGISTER = 'register/',
   LOGIN = 'login/',
+  ID = ':id/',
 }
 
 export enum errorsTexts {

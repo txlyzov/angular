@@ -3,11 +3,11 @@
 <div class="container mt-5">
 
     <div class="row mb-5">
-        <div *ngFor="let image of images" class="col-md-3 text-center mx-auto">
+        <div *ngFor="let image of images | paginate: config" class="col-md-3 text-center mx-auto">
             <app-image-card (onOpenModal)="onOpenModal($event)" [image]=image [isOnlyDisplaying]=false></app-image-card>
         </div>
 
-        <app-delete-image-modal (refreshPageData)="getAllImages()" [image]=imageToDelete></app-delete-image-modal>
+        <app-delete-image-modal (refreshPageData)="getImages()" [image]=imageToDelete></app-delete-image-modal>
     </div>
 
 </div>

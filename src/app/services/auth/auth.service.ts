@@ -4,7 +4,7 @@ import { UserInterface } from 'src/app/models/table-models/user-interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LoginInfoInterface } from 'src/app/models/login-info-interface';
-import { JWTResponceInterface } from 'src/app/models/jwt-responce';
+import { JWTResponseInterface } from 'src/app/models/jwt-response-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +26,8 @@ export class AuthService {
 
   public loginUser(
     loginInfoInterface: LoginInfoInterface,
-  ): Observable<JWTResponceInterface> {
-    return this.http.post<JWTResponceInterface>(
+  ): Observable<JWTResponseInterface> {
+    return this.http.post<JWTResponseInterface>(
       `${this.apiServerUrl}/${this.section}/login`,
       loginInfoInterface,
     );

@@ -6,4 +6,9 @@ import { Component, Input } from '@angular/core';
 })
 export class GalleryElementsBarComponent {
   @Input() isAvaliable: boolean | undefined;
+  @Input() config?: {
+    currentPage: number;
+    itemsPerPage: number;
+    totalItems: number;
+  };
 }

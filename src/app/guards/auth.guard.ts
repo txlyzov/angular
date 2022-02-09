@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { routes } from '../utils/consts/consts';
+import { regularExpressions as RE, routes } from '../utils/consts/consts';
 import { TokenStorageService } from '../utils/token-storage/token-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  regex = new RegExp('(^[A-Za-z0-9-_]*.[A-Za-z0-9-_]*.[A-Za-z0-9-_]*$)');
+  regex = new RegExp(RE.AUTH_TOKEN);
 
   constructor(
     private tokenStorageService: TokenStorageService,

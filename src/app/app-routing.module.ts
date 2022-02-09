@@ -11,21 +11,21 @@ import { UpdateImageComponent } from './pages/update-image';
 import { routes as r } from './utils/consts/consts';
 
 const routes: Routes = [
-  { path: r.PUBLIC_IMAGES.slice(0, -1), component: PublicImagesComponent },
-  { path: r.LOGIN.slice(0, -1), component: LoginComponent },
-  { path: r.REGISTER.slice(0, -1), component: RegisterComponent },
+  { path: r.PUBLIC_IMAGES, component: PublicImagesComponent },
+  { path: r.LOGIN, component: LoginComponent },
+  { path: r.REGISTER, component: RegisterComponent },
   {
-    path: r.USER_IMAGES.slice(0, -1),
+    path: r.USER_IMAGES,
     component: UserImagesComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: r.UPLOAD_IMAGE.slice(0, -1),
+    path: r.UPLOAD_IMAGE,
     component: UploadImageComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: r.UPDATE_IMAGE + r.ID.slice(0, -1),
+    path: r.UPDATE_IMAGE + r.ID,
     component: UpdateImageComponent,
     canActivate: [AuthGuard],
   },

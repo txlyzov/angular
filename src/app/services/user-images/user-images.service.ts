@@ -4,6 +4,7 @@ import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-in
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ImageInterface } from 'src/app/models/table-models/image-creation-interface';
+import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -35,9 +36,11 @@ export class UserImagesService {
 
   public getUserImages(
     token: string,
-  ): Observable<ImageFromDatabaseInterface[]> {
-    return this.http.get<ImageFromDatabaseInterface[]>(
-      `${this.apiServerUrl}/${this.section}`,
+    pageNumber: number,
+    limitNumber: number,
+  ): Observable<ResponseWithMetaInterface> {
+    return this.http.get<ResponseWithMetaInterface>(
+      `${this.apiServerUrl}/${this.section}?limit=${limitNumber}&page=${pageNumber}`,
       {
         headers: new HttpHeaders().set(TOKEN_KEY, token),
       },

@@ -37,8 +37,8 @@ export class PublicImagesComponent {
       .getPublicImages(this.config.currentPage, this.config.itemsPerPage)
       .subscribe(
         (response: ResponseWithMetaInterface) => {
-          this.config.totalItems = response.meta;
-          this.images = response.data;
+          this.config.totalItems = response.meta.count;
+          this.images = response.data.rows;
         },
         (err: HttpErrorResponse) => {
           alert(err.message);

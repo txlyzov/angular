@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { regularExpressions as RE } from 'src/app/utils/consts/consts';
+import { regularExpressions } from 'src/app/utils/consts/regular-expressions';
+
+const { LINK_WITHOUT_QUERIES_REG_EXP } = regularExpressions;
 
 @Component({
   selector: 'app-pagination',
@@ -16,7 +18,7 @@ export class PaginationComponent {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   pageChange(newPage: number) {
-    const regex = new RegExp(RE.LINK_WITHOUT_QUERIES);
+    const regex = new RegExp(LINK_WITHOUT_QUERIES_REG_EXP);
 
     this.router.navigate([regex.exec(this.router.url)![0]], {
       queryParams: { page: newPage },

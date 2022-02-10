@@ -3,8 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { errorsTexts, routes } from 'src/app/utils/consts/consts';
+import { errorsTexts } from 'src/app/utils/consts/error-texts';
+import { routes } from 'src/app/utils/consts/routes';
 import { componentId as CID } from './register-consts';
+
+const { LOGIN } = routes;
+const { DIFFERENT_PASSWORDS } = errorsTexts;
 
 @Component({
   templateUrl: 'register.component.html',
@@ -36,7 +40,7 @@ export class RegisterComponent {
     if (this.dataCheck()) {
       this.authService.registerUser(this.form.getRawValue()).subscribe(
         () => {
-          this.router.navigate([routes.LOGIN]);
+          this.router.navigate([LOGIN]);
         },
         (err: HttpErrorResponse) => {
           alert(err.message);
@@ -46,7 +50,7 @@ export class RegisterComponent {
       return;
     }
 
-    return alert(errorsTexts.DIFFERENT_PASSWORDS);
+    return alert(DIFFERENT_PASSWORDS);
   }
 
   dataCheck() {

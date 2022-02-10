@@ -1,19 +1,3 @@
-export enum routes {
-  PUBLIC_IMAGES = '',
-  USER_IMAGES = 'images-control',
-  UPLOAD_IMAGE = 'new-image',
-  UPDATE_IMAGE = 'update-image',
-  REGISTER = 'register',
-  LOGIN = 'login',
-  ID = '/:id',
-}
-
-export enum errorsTexts {
-  AUTH_ERROR = 'Authorisation Error. Re-login needed.',
-  DIFFERENT_PASSWORDS = 'Passwords are different.',
-  IMG_LINK_ERROR = 'Image link is broken.',
-}
-
 export enum testValues {
   EMPTY_STRING = '',
 
@@ -33,9 +17,4 @@ export enum testValues {
   STRING_2 = 'string_for_test_2',
   STRING_3 = 'string_for_test_3',
   STRING_4 = 'string_for_test_4',
-}
-
-export enum regularExpressions {
-  LINK_WITHOUT_QUERIES = '^[^?]*',
-  AUTH_TOKEN = '(^[A-Za-z0-9-_]*.[A-Za-z0-9-_]*.[A-Za-z0-9-_]*$)',
 }

@@ -5,6 +5,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
 
+const DEFAULT_PAGE_NUMBER = 1;
+const ITEMS_PER_PAGE = 16;
+const DEFAULT_TOTAL_ITEMS_NUMBER = 0;
+
 @Component({
   templateUrl: 'public-images.component.html',
   styleUrls: ['public-images.component.css'],
@@ -22,12 +26,13 @@ export class PublicImagesComponent {
     private route: ActivatedRoute,
   ) {
     this.config = {
-      currentPage: 1,
-      itemsPerPage: 16,
-      totalItems: 0,
+      currentPage: DEFAULT_PAGE_NUMBER,
+      itemsPerPage: ITEMS_PER_PAGE,
+      totalItems: DEFAULT_TOTAL_ITEMS_NUMBER,
     };
     route.queryParams.subscribe((params) => {
-      this.config!.currentPage = params['page'] ? params['page'] : 1;
+      //this.config.currentPage = params['page'] ? params['page'] : DEFAULT_PAGE_NUMBER;
+      this.config.currentPage = params['page'] || DEFAULT_PAGE_NUMBER;
       this.getImages();
     });
   }

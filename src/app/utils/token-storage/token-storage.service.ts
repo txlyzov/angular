@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { errorsTexts, routes } from '../consts/consts';
+import { errorsTexts } from '../consts/error-texts';
+import { routes } from '../consts/routes';
 
+const { AUTH_ERROR } = errorsTexts;
+const { LOGIN } = routes;
 const TOKEN_KEY = 'AuthToken';
 const LOGIN_KEY = 'UserLogin';
 
@@ -40,8 +43,8 @@ export class TokenStorageService {
     window.localStorage.clear();
     this.token.next(window.localStorage.getItem(TOKEN_KEY));
     this.login.next(window.localStorage.getItem(LOGIN_KEY));
-    alert(errorsTexts.AUTH_ERROR);
-    this.router.navigate([routes.LOGIN]);
+    alert(AUTH_ERROR);
+    this.router.navigate([LOGIN]);
   }
 
   afterLogin(token: string, login: string) {

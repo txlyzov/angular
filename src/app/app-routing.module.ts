@@ -8,24 +8,34 @@ import { UserImagesComponent } from './pages/user-images';
 import { AuthGuard } from './guards/auth.guard';
 import { UploadImageComponent } from './pages/upload-image';
 import { UpdateImageComponent } from './pages/update-image';
-import { routes as r } from './utils/consts/consts';
+import { routes as r } from './utils/consts/routes';
+
+const {
+  PUBLIC_IMAGES,
+  LOGIN,
+  REGISTER,
+  USER_IMAGES,
+  UPLOAD_IMAGE,
+  UPDATE_IMAGE,
+  ID,
+} = r;
 
 const routes: Routes = [
-  { path: r.PUBLIC_IMAGES, component: PublicImagesComponent },
-  { path: r.LOGIN, component: LoginComponent },
-  { path: r.REGISTER, component: RegisterComponent },
+  { path: PUBLIC_IMAGES, component: PublicImagesComponent },
+  { path: LOGIN, component: LoginComponent },
+  { path: REGISTER, component: RegisterComponent },
   {
-    path: r.USER_IMAGES,
+    path: USER_IMAGES,
     component: UserImagesComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: r.UPLOAD_IMAGE,
+    path: UPLOAD_IMAGE,
     component: UploadImageComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: r.UPDATE_IMAGE + r.ID,
+    path: UPDATE_IMAGE + ID,
     component: UpdateImageComponent,
     canActivate: [AuthGuard],
   },

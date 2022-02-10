@@ -21,4 +21,14 @@ export class ImagesService {
       `${this.apiServerUrl}/${this.section}?limit=${limitNumber}&page=${pageNumber}`,
     );
   }
+
+  public searchPublicImages(
+    pageNumber: number,
+    limitNumber: number,
+    searchGoal: string,
+  ): Observable<ResponseWithMetaInterface> {
+    return this.http.get<ResponseWithMetaInterface>(
+      `${this.apiServerUrl}/${this.section}?limit=${limitNumber}&page=${pageNumber}&searchGoal=${searchGoal}`,
+    );
+  }
 }

@@ -47,6 +47,20 @@ export class UserImagesService {
     );
   }
 
+  public searchUserImages(
+    token: string,
+    pageNumber: number,
+    limitNumber: number,
+    searchGoal: string,
+  ): Observable<ResponseWithMetaInterface> {
+    return this.http.get<ResponseWithMetaInterface>(
+      `${this.apiServerUrl}/${this.section}?limit=${limitNumber}&page=${pageNumber}&searchGoal=${searchGoal}`,
+      {
+        headers: new HttpHeaders().set(TOKEN_KEY, token),
+      },
+    );
+  }
+
   public getUserImage(
     token: string,
     imageId: string,

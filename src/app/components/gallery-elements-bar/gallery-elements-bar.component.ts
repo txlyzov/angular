@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-gallery-elements-bar',
@@ -11,4 +11,9 @@ export class GalleryElementsBarComponent {
     itemsPerPage: number;
     totalItems: number;
   };
+  @Output() triggeredSearchFunc: EventEmitter<string> = new EventEmitter();
+
+  search(searchGoal: string) {
+    this.triggeredSearchFunc.emit(searchGoal);
+  }
 }

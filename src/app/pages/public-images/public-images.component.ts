@@ -20,6 +20,7 @@ export class PublicImagesComponent {
     itemsPerPage: number;
     totalItems: number;
   };
+  searchGoal?: string;
 
   constructor(
     private imageService: ImagesService,
@@ -31,15 +32,21 @@ export class PublicImagesComponent {
       totalItems: DEFAULT_TOTAL_ITEMS_NUMBER,
     };
     route.queryParams.subscribe((params) => {
-      //this.config.currentPage = params['page'] ? params['page'] : DEFAULT_PAGE_NUMBER;
       this.config.currentPage = params['page'] || DEFAULT_PAGE_NUMBER;
       this.getImages();
     });
   }
 
-  public getImages(): void {
+  public getImages(searchGoal?: string): void {
+    if (this.searchGoal !== searchGoal) {
+      this.config.currentPage = DEFAULT_PAGE_NUMBER;
+    }
     this.imageService
-      .getPublicImages(this.config.currentPage, this.config.itemsPerPage)
+      .getPublicImages(
+        this.config.currentPage,
+        this.config.itemsPerPage,
+        searchGoal,
+      )
       .subscribe(
         (response: ResponseWithMetaInterface) => {
           this.config.totalItems = response.meta.count;

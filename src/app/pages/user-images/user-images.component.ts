@@ -23,6 +23,7 @@ export class UserImagesComponent {
     itemsPerPage: number;
     totalItems: number;
   };
+  searchGoal?: string;
 
   constructor(
     private userImagesService: UserImagesService,
@@ -40,12 +41,20 @@ export class UserImagesComponent {
     });
   }
 
-  public getImages(): void {
+  public getImages(searchGoal?: string): void {
     const token = this.tokenStorageService.getToken().getValue();
 
     if (token) {
+      if (this.searchGoal !== searchGoal) {
+        this.config.currentPage = DEFAULT_PAGE_NUMBER;
+      }
       this.userImagesService
-        .getUserImages(token, this.config.currentPage, this.config.itemsPerPage)
+        .getUserImages(
+          token,
+          this.config.currentPage,
+          this.config.itemsPerPage,
+          searchGoal,
+        )
         .subscribe(
           (response: ResponseWithMetaInterface) => {
             this.config.totalItems = response.meta.count;

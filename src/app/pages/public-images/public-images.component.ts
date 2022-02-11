@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { ImagesService } from 'src/app/services/images/images.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
 
 const DEFAULT_PAGE_NUMBER = 1;
@@ -25,7 +25,6 @@ export class PublicImagesComponent {
   constructor(
     private imageService: ImagesService,
     private route: ActivatedRoute,
-    private router: Router,
   ) {
     this.config = {
       currentPage: DEFAULT_PAGE_NUMBER,
@@ -39,6 +38,9 @@ export class PublicImagesComponent {
   }
 
   public getImages(searchGoal?: string): void {
+    if (this.searchGoal !== searchGoal) {
+      this.config.currentPage = DEFAULT_PAGE_NUMBER;
+    }
     this.imageService
       .getPublicImages(
         this.config.currentPage,

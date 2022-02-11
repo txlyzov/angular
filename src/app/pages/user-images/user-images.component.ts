@@ -23,6 +23,7 @@ export class UserImagesComponent {
     itemsPerPage: number;
     totalItems: number;
   };
+  searchGoal?: string;
 
   constructor(
     private userImagesService: UserImagesService,
@@ -44,6 +45,9 @@ export class UserImagesComponent {
     const token = this.tokenStorageService.getToken().getValue();
 
     if (token) {
+      if (this.searchGoal !== searchGoal) {
+        this.config.currentPage = DEFAULT_PAGE_NUMBER;
+      }
       this.userImagesService
         .getUserImages(
           token,

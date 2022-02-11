@@ -38,23 +38,16 @@ export class UserImagesService {
     token: string,
     pageNumber: number,
     limitNumber: number,
+    searchGoal?: string,
   ): Observable<ResponseWithMetaInterface> {
-    return this.http.get<ResponseWithMetaInterface>(
-      `${this.apiServerUrl}/${this.section}?limit=${limitNumber}&page=${pageNumber}`,
-      {
-        headers: new HttpHeaders().set(TOKEN_KEY, token),
-      },
-    );
-  }
+    let params = `limit=${limitNumber}&page=${pageNumber}`;
 
-  public searchUserImages(
-    token: string,
-    pageNumber: number,
-    limitNumber: number,
-    searchGoal: string,
-  ): Observable<ResponseWithMetaInterface> {
+    if (searchGoal) {
+      params += `&searchGoal=${searchGoal}`;
+    }
+
     return this.http.get<ResponseWithMetaInterface>(
-      `${this.apiServerUrl}/${this.section}?limit=${limitNumber}&page=${pageNumber}&searchGoal=${searchGoal}`,
+      `${this.apiServerUrl}/${this.section}?${params}`,
       {
         headers: new HttpHeaders().set(TOKEN_KEY, token),
       },

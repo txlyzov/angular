@@ -40,12 +40,17 @@ export class UserImagesComponent {
     });
   }
 
-  public getImages(): void {
+  public getImages(searchGoal?: string): void {
     const token = this.tokenStorageService.getToken().getValue();
 
     if (token) {
       this.userImagesService
-        .getUserImages(token, this.config.currentPage, this.config.itemsPerPage)
+        .getUserImages(
+          token,
+          this.config.currentPage,
+          this.config.itemsPerPage,
+          searchGoal,
+        )
         .subscribe(
           (response: ResponseWithMetaInterface) => {
             this.config.totalItems = response.meta.count;
@@ -64,41 +69,6 @@ export class UserImagesComponent {
     }
 
     return this.tokenStorageService.errorSignOut();
-  }
-
-  public searchImages(searchGoal: string): void {
-    if (searchGoal) {
-      const token = this.tokenStorageService.getToken().getValue();
-
-      if (token) {
-        this.userImagesService
-          .searchUserImages(
-            token,
-            this.config.currentPage,
-            this.config.itemsPerPage,
-            searchGoal,
-          )
-          .subscribe(
-            (response: ResponseWithMetaInterface) => {
-              this.config.totalItems = response.meta.count;
-              this.images = response.data.rows;
-            },
-            (err: HttpErrorResponse) => {
-              if (err.status === HttpStatusCode.Forbidden) {
-                return this.tokenStorageService.errorSignOut();
-              }
-
-              return alert(err.message);
-            },
-          );
-
-        return;
-      }
-
-      return this.tokenStorageService.errorSignOut();
-    }
-
-    return this.getImages();
   }
 
   public onOpenModal(model: {

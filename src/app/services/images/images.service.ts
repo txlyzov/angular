@@ -16,19 +16,16 @@ export class ImagesService {
   public getPublicImages(
     pageNumber: number,
     limitNumber: number,
+    searchGoal?: string,
   ): Observable<ResponseWithMetaInterface> {
-    return this.http.get<ResponseWithMetaInterface>(
-      `${this.apiServerUrl}/${this.section}?limit=${limitNumber}&page=${pageNumber}`,
-    );
-  }
+    let params = `limit=${limitNumber}&page=${pageNumber}`;
 
-  public searchPublicImages(
-    pageNumber: number,
-    limitNumber: number,
-    searchGoal: string,
-  ): Observable<ResponseWithMetaInterface> {
+    if (searchGoal) {
+      params += `&searchGoal=${searchGoal}`;
+    }
+
     return this.http.get<ResponseWithMetaInterface>(
-      `${this.apiServerUrl}/${this.section}?limit=${limitNumber}&page=${pageNumber}&searchGoal=${searchGoal}`,
+      `${this.apiServerUrl}/${this.section}?${params}`,
     );
   }
 }

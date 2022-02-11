@@ -5,7 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
-import { errorsTexts, routes } from 'src/app/utils/consts/consts';
+import { errorsTexts } from 'src/app/utils/consts/error-texts';
+import { routes } from 'src/app/utils/consts/routes';
+
+const { USER_IMAGES } = routes;
+const { IMG_LINK_ERROR } = errorsTexts;
 
 @Component({
   templateUrl: 'update-image.component.html',
@@ -81,8 +85,8 @@ export class UpdateImageComponent implements OnInit {
     }
 
     if (!id) {
-      alert(errorsTexts.IMG_LINK_ERROR);
-      this.router.navigate([routes.USER_IMAGES]);
+      alert(IMG_LINK_ERROR);
+      this.router.navigate([USER_IMAGES]);
 
       return;
     }

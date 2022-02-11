@@ -4,8 +4,12 @@ import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.s
 import { Router } from '@angular/router';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
-import { errorsTexts, routes } from 'src/app/utils/consts/consts';
+import { errorsTexts } from 'src/app/utils/consts/error-texts';
+import { routes } from 'src/app/utils/consts/routes';
 import { componentId as CID } from './upload-image-consts';
+
+const { IMG_LINK_ERROR } = errorsTexts;
+const { USER_IMAGES } = routes;
 
 @Component({
   templateUrl: 'upload-image.component.html',
@@ -77,14 +81,14 @@ export class UploadImageComponent {
     }
 
     if (!this.isImageUrlValid) {
-      alert(errorsTexts.IMG_LINK_ERROR);
+      alert(IMG_LINK_ERROR);
 
       return;
     }
 
     this.userImageService.createImage(imageData, token).subscribe(
       () => {
-        this.router.navigate([routes.USER_IMAGES]);
+        this.router.navigate([USER_IMAGES]);
       },
       (err: HttpErrorResponse) => {
         if (err.status === HttpStatusCode.Forbidden) {

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,15 +13,12 @@ export class ImagesService {
 
   constructor(private http: HttpClient) {}
 
-  public getPublicImages(): Observable<ImageFromDatabaseInterface[]> {
-    return this.http.get<ImageFromDatabaseInterface[]>(
-      `${this.apiServerUrl}/${this.section}`,
+  public getPublicImages(
+    pageNumber: number,
+    limitNumber: number,
+  ): Observable<ResponseWithMetaInterface> {
+    return this.http.get<ResponseWithMetaInterface>(
+      `${this.apiServerUrl}/${this.section}?limit=${limitNumber}&page=${pageNumber}`,
     );
-  }
-
-  public deleteImage(imageId: number): Observable<string> {
-    return this.http.delete(`${this.apiServerUrl}/${this.section}/${imageId}`, {
-      responseType: 'text',
-    });
   }
 }

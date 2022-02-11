@@ -3,10 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { testValues as TV } from 'src/app/utils/consts/consts';
+import { testValues } from 'src/app/utils/consts/test-values';
 import { componentId as CID } from './register-consts';
 
 import { RegisterComponent } from './register.component';
+
+const { STRING_1, STRING_2, STRING_3, STRING_4, EMAIL_2 } = testValues;
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -51,10 +53,10 @@ describe('RegisterComponent', () => {
       );
 
       spyEvent = spyOn(component, 'submit');
-      inputLogin.value = TV.STRING_1;
-      inputEmail.value = TV.EMAIL_2;
-      inputPassword.value = TV.STRING_3;
-      inputPasswordConfirm.value = TV.STRING_4;
+      inputLogin.value = STRING_1;
+      inputEmail.value = EMAIL_2;
+      inputPassword.value = STRING_3;
+      inputPasswordConfirm.value = STRING_4;
       inputLogin.dispatchEvent(new Event('input'));
       inputEmail.dispatchEvent(new Event('input'));
       inputPassword.dispatchEvent(new Event('input'));
@@ -84,10 +86,10 @@ describe('RegisterComponent', () => {
       );
 
       spyEvent = spyOn(component, 'submit');
-      inputLogin.value = TV.STRING_1;
-      inputEmail.value = TV.STRING_2;
-      inputPassword.value = TV.STRING_3;
-      inputPasswordConfirm.value = TV.STRING_4;
+      inputLogin.value = STRING_1;
+      inputEmail.value = STRING_2;
+      inputPassword.value = STRING_3;
+      inputPasswordConfirm.value = STRING_4;
       inputLogin.dispatchEvent(new Event('input'));
       inputEmail.dispatchEvent(new Event('input'));
       inputPassword.dispatchEvent(new Event('input'));
@@ -119,10 +121,10 @@ describe('RegisterComponent', () => {
       spyEvent = spyOn(authService, 'registerUser').and.returnValue({
       subscribe: () => {},  // eslint-disable-line
       });
-      inputLogin.value = TV.STRING_1;
-      inputEmail.value = TV.EMAIL_2;
-      inputPassword.value = TV.STRING_3;
-      inputPasswordConfirm.value = TV.STRING_3;
+      inputLogin.value = STRING_1;
+      inputEmail.value = EMAIL_2;
+      inputPassword.value = STRING_3;
+      inputPasswordConfirm.value = STRING_3;
       inputLogin.dispatchEvent(new Event('input'));
       inputEmail.dispatchEvent(new Event('input'));
       inputPassword.dispatchEvent(new Event('input'));
@@ -152,10 +154,10 @@ describe('RegisterComponent', () => {
       spyEvent = spyOn(authService, 'registerUser').and.returnValue({
       subscribe: () => {},  // eslint-disable-line
       });
-      inputLogin.value = TV.STRING_1;
-      inputEmail.value = TV.EMAIL_2;
-      inputPassword.value = TV.STRING_3;
-      inputPasswordConfirm.value = TV.STRING_4;
+      inputLogin.value = STRING_1;
+      inputEmail.value = EMAIL_2;
+      inputPassword.value = STRING_3;
+      inputPasswordConfirm.value = STRING_4;
       inputLogin.dispatchEvent(new Event('input'));
       inputEmail.dispatchEvent(new Event('input'));
       inputPassword.dispatchEvent(new Event('input'));

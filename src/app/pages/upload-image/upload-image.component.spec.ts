@@ -5,10 +5,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
-import { errorsTexts, testValues as TV } from 'src/app/utils/consts/consts';
+import { testValues } from 'src/app/utils/consts/test-values';
+import { errorsTexts } from 'src/app/utils/consts/error-texts';
 import { componentId as CID } from './upload-image-consts';
 
 import { UploadImageComponent } from './upload-image.component';
+
+const {
+  STRING_1,
+  STRING_2,
+  STRING_3,
+  LINK_1,
+  LINK_2,
+  AUTH_TOKEN_1,
+  EMPTY_STRING,
+} = testValues;
+const { IMG_LINK_ERROR } = errorsTexts;
 
 describe('UploadImageComponent', () => {
   let component: UploadImageComponent;
@@ -54,10 +66,10 @@ describe('UploadImageComponent', () => {
       );
 
       spyEvent = spyOn(component, 'submit');
-      inputName.value = TV.STRING_1;
-      inputLink.value = TV.LINK_2;
+      inputName.value = STRING_1;
+      inputLink.value = LINK_2;
       component.isImageUrlValid = true;
-      inputDescription.value = TV.STRING_3;
+      inputDescription.value = STRING_3;
 
       inputName.dispatchEvent(new Event('input'));
       inputLink.dispatchEvent(new Event('input'));
@@ -91,10 +103,10 @@ describe('UploadImageComponent', () => {
       );
 
       spyEvent = spyOn(component, 'submit');
-      inputName.value = TV.STRING_1;
-      inputLink.value = TV.LINK_2;
+      inputName.value = STRING_1;
+      inputLink.value = LINK_2;
       component.isImageUrlValid = true;
-      inputDescription.value = TV.EMPTY_STRING;
+      inputDescription.value = EMPTY_STRING;
 
       inputName.dispatchEvent(new Event('input'));
       inputLink.dispatchEvent(new Event('input'));
@@ -125,10 +137,10 @@ describe('UploadImageComponent', () => {
       );
 
       spyEvent = spyOn(component, 'submit');
-      inputName.value = TV.STRING_1;
-      inputLink.value = TV.STRING_2;
+      inputName.value = STRING_1;
+      inputLink.value = STRING_2;
       component.isImageUrlValid = false;
-      inputDescription.value = TV.STRING_3;
+      inputDescription.value = STRING_3;
 
       inputName.dispatchEvent(new Event('input'));
       inputLink.dispatchEvent(new Event('input'));
@@ -158,10 +170,10 @@ describe('UploadImageComponent', () => {
       );
 
       spyEvent = spyOn(component, 'submit');
-      inputName.value = TV.EMPTY_STRING;
-      inputLink.value = TV.LINK_2;
+      inputName.value = EMPTY_STRING;
+      inputLink.value = LINK_2;
       component.isImageUrlValid = true;
-      inputDescription.value = TV.STRING_3;
+      inputDescription.value = STRING_3;
 
       inputName.dispatchEvent(new Event('input'));
       inputLink.dispatchEvent(new Event('input'));
@@ -180,24 +192,24 @@ describe('UploadImageComponent', () => {
 
   describe('Logic tests', () => {
     it('should test previewName(name) function', () => {
-      component.image.name = TV.EMPTY_STRING;
-      component.previewName(TV.STRING_1);
+      component.image.name = EMPTY_STRING;
+      component.previewName(STRING_1);
 
-      expect(component.image.name).toBe(TV.STRING_1);
+      expect(component.image.name).toBe(STRING_1);
     });
 
     it('should test previewLink(link) function', () => {
-      component.image.url = TV.EMPTY_STRING;
-      component.previewLink(TV.LINK_1);
+      component.image.url = EMPTY_STRING;
+      component.previewLink(LINK_1);
 
-      expect(component.image.url).toBe(TV.LINK_1);
+      expect(component.image.url).toBe(LINK_1);
     });
 
     it('should test previewDescription(description) function', () => {
-      component.image.description = TV.EMPTY_STRING;
-      component.previewDescription(TV.STRING_1);
+      component.image.description = EMPTY_STRING;
+      component.previewDescription(STRING_1);
 
-      expect(component.image.description).toBe(TV.STRING_1);
+      expect(component.image.description).toBe(STRING_1);
     });
 
     it('should test setImageUrlValidStatus(status) function', () => {
@@ -209,7 +221,7 @@ describe('UploadImageComponent', () => {
 
     it('should test submit() function (tokenStorageService.errorSignOut() call)', () => {
       const tokenStorageService = TestBed.get(TokenStorageService);
-      tokenStorageService.saveToken(TV.EMPTY_STRING);
+      tokenStorageService.saveToken(EMPTY_STRING);
       spyEvent = spyOn(tokenStorageService, 'errorSignOut');
 
       fixture.detectChanges();
@@ -221,19 +233,19 @@ describe('UploadImageComponent', () => {
     it('should test submit() function (invalid image link alert)', () => {
       const tokenStorageService = TestBed.get(TokenStorageService);
       spyOn(window, 'alert');
-      tokenStorageService.saveToken(TV.AUTH_TOKEN_1);
+      tokenStorageService.saveToken(AUTH_TOKEN_1);
       component.isImageUrlValid = false;
 
       fixture.detectChanges();
       component.submit();
 
-      expect(window.alert).toHaveBeenCalledWith(errorsTexts.IMG_LINK_ERROR);
+      expect(window.alert).toHaveBeenCalledWith(IMG_LINK_ERROR);
     });
 
     it('should test submit() function (userImageService.createImage(imageData, token) call)', () => {
       const tokenStorageService = TestBed.get(TokenStorageService);
       const userImageService = TestBed.get(UserImagesService);
-      tokenStorageService.saveToken(TV.AUTH_TOKEN_1);
+      tokenStorageService.saveToken(AUTH_TOKEN_1);
 
       const inputName = fixture.nativeElement.querySelector(
         '#' + CID.INPUT_IMAGE_NAME,
@@ -245,10 +257,10 @@ describe('UploadImageComponent', () => {
         '#' + CID.INPUT_IMAGE_DESCRIPTION,
       );
 
-      inputName.value = TV.EMPTY_STRING;
-      inputLink.value = TV.LINK_2;
+      inputName.value = EMPTY_STRING;
+      inputLink.value = LINK_2;
       component.isImageUrlValid = true;
-      inputDescription.value = TV.STRING_3;
+      inputDescription.value = STRING_3;
 
       inputName.dispatchEvent(new Event('input'));
       inputLink.dispatchEvent(new Event('input'));

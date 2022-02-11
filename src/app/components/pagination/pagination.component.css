@@ -1,0 +1,7 @@
+.my-pagination /deep/ .ngx-pagination .current {
+    background: rgb(33, 37, 41);
+}
+
+.my-pagination /deep/ .ngx-pagination {
+    margin-bottom: auto;
+}

@@ -3,10 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { testValues as TV } from 'src/app/utils/consts/consts';
+import { testValues } from 'src/app/utils/consts/test-values';
 import { componentId as CID } from './login-consts';
 
 import { LoginComponent } from './login.component';
+
+const { STRING_1, STRING_2, EMPTY_STRING } = testValues;
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -45,8 +47,8 @@ describe('LoginComponent', () => {
       );
 
       spyEvent = spyOn(component, 'submit');
-      inputLogin.value = TV.STRING_1;
-      inputPassword.value = TV.STRING_2;
+      inputLogin.value = STRING_1;
+      inputPassword.value = STRING_2;
       inputLogin.dispatchEvent(new Event('input'));
       inputPassword.dispatchEvent(new Event('input'));
 
@@ -68,8 +70,8 @@ describe('LoginComponent', () => {
       );
 
       spyEvent = spyOn(component, 'submit');
-      inputLogin.value = TV.EMPTY_STRING;
-      inputPassword.value = TV.STRING_2;
+      inputLogin.value = EMPTY_STRING;
+      inputPassword.value = STRING_2;
       inputLogin.dispatchEvent(new Event('input'));
       inputPassword.dispatchEvent(new Event('input'));
 

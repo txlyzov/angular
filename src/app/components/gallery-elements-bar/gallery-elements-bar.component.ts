@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-gallery-elements-bar',
@@ -12,8 +13,11 @@ export class GalleryElementsBarComponent {
     totalItems: number;
   };
   @Output() triggeredSearchFunc: EventEmitter<string> = new EventEmitter();
+  searchValue?: string;
 
-  search(searchGoal: string) {
+  constructor(private activatedRoute: ActivatedRoute) {}
+
+  onSearchChange(searchGoal?: string) {
     this.triggeredSearchFunc.emit(searchGoal);
   }
 }

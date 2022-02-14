@@ -14,9 +14,8 @@ export class ImageCardComponent {
 
   public setParamsToImageDeleteModal(
     image: ImageFromDatabaseInterface | undefined,
-    mode: string,
   ) {
-    this.onOpenModal.emit({ image, mode });
+    this.onOpenModal.emit(image);
   }
 
   public openLink(url: string | undefined) {

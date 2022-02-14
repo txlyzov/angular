@@ -4,10 +4,12 @@ import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { queryParams } from 'src/app/utils/consts/routes';
 
+const { PAGE_QUERY, PRIVACY_FILTER_QUERY } = queryParams;
 const DEFAULT_PAGE_NUMBER = 1;
-const ITEMS_PER_PAGE = 16;
+const ITEMS_PER_PAGE = 2;
 const DEFAULT_TOTAL_ITEMS_NUMBER = 0;
 
 @Component({
@@ -23,20 +25,22 @@ export class UserImagesComponent {
     itemsPerPage: number;
     totalItems: number;
   };
-  searchGoal?: string;
+  lastSearchGoal?: string;
+  privacyFilter?: string | null;
 
   constructor(
     private userImagesService: UserImagesService,
     private tokenStorageService: TokenStorageService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {
     this.config = {
       currentPage: DEFAULT_PAGE_NUMBER,
       itemsPerPage: ITEMS_PER_PAGE,
       totalItems: DEFAULT_TOTAL_ITEMS_NUMBER,
     };
-    route.queryParams.subscribe((params) => {
-      this.config.currentPage = params['page'] || DEFAULT_PAGE_NUMBER;
+    activatedRoute.queryParams.subscribe((params) => {
+      this.config.currentPage = params[PAGE_QUERY] || DEFAULT_PAGE_NUMBER;
       this.getImages();
     });
   }
@@ -45,8 +49,26 @@ export class UserImagesComponent {
     const token = this.tokenStorageService.getToken().getValue();
 
     if (token) {
-      if (this.searchGoal !== searchGoal) {
+      const privacyFilter =
+        this.activatedRoute.snapshot.queryParamMap.get(PRIVACY_FILTER_QUERY);
+
+      if (
+        this.lastSearchGoal != searchGoal ||
+        this.privacyFilter != privacyFilter
+      ) {
         this.config.currentPage = DEFAULT_PAGE_NUMBER;
+        this.lastSearchGoal = searchGoal;
+        this.privacyFilter = privacyFilter;
+
+        this.router.navigate([], {
+          queryParams: {
+            page: DEFAULT_PAGE_NUMBER,
+            privacyFilter:
+              this.activatedRoute.snapshot.queryParamMap.get(
+                PRIVACY_FILTER_QUERY,
+              ),
+          },
+        });
       }
       this.userImagesService
         .getUserImages(
@@ -54,6 +76,7 @@ export class UserImagesComponent {
           this.config.currentPage,
           this.config.itemsPerPage,
           searchGoal,
+          privacyFilter,
         )
         .subscribe(
           (response: ResponseWithMetaInterface) => {
@@ -75,26 +98,10 @@ export class UserImagesComponent {
     return this.tokenStorageService.errorSignOut();
   }
 
-  public onOpenModal(model: {
-    image: ImageFromDatabaseInterface | null;
-    mode: string;
-  }) {
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-
-    if (model.mode === 'delete') {
-      if (model.image) {
-        this.imageToDelete = model.image;
-      }
-
-      button.setAttribute('data-target', '#deleteImageModal');
+  public onOpenModal(image: ImageFromDatabaseInterface | null) {
+    if (image) {
+      this.imageToDelete = image;
     }
-
-    container?.appendChild(button);
-    button.click();
   }
 
   public openLink(url: string) {

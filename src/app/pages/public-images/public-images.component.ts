@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { ImageFromDatabaseInterface } from 'src/app/models/table-models/image-interface';
 import { ImagesService } from 'src/app/services/images/images.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
+import { queryParams } from 'src/app/utils/consts/routes';
 
+const { PAGE_QUERY } = queryParams;
 const DEFAULT_PAGE_NUMBER = 1;
 const ITEMS_PER_PAGE = 16;
 const DEFAULT_TOTAL_ITEMS_NUMBER = 0;
@@ -20,26 +22,32 @@ export class PublicImagesComponent {
     itemsPerPage: number;
     totalItems: number;
   };
-  searchGoal?: string;
+  lastSearchGoal?: string;
 
   constructor(
     private imageService: ImagesService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {
     this.config = {
       currentPage: DEFAULT_PAGE_NUMBER,
       itemsPerPage: ITEMS_PER_PAGE,
       totalItems: DEFAULT_TOTAL_ITEMS_NUMBER,
     };
-    route.queryParams.subscribe((params) => {
-      this.config.currentPage = params['page'] || DEFAULT_PAGE_NUMBER;
+    activatedRoute.queryParams.subscribe((params) => {
+      this.config.currentPage = params[PAGE_QUERY] || DEFAULT_PAGE_NUMBER;
       this.getImages();
     });
   }
 
   public getImages(searchGoal?: string): void {
-    if (this.searchGoal !== searchGoal) {
+    if (this.lastSearchGoal != searchGoal) {
       this.config.currentPage = DEFAULT_PAGE_NUMBER;
+      this.lastSearchGoal = searchGoal;
+
+      this.router.navigate([], {
+        queryParams: { page: DEFAULT_PAGE_NUMBER },
+      });
     }
     this.imageService
       .getPublicImages(

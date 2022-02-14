@@ -39,11 +39,15 @@ export class UserImagesService {
     pageNumber: number,
     limitNumber: number,
     searchGoal?: string,
+    privacyFilter?: string | null,
   ): Observable<ResponseWithMetaInterface> {
     let params = `limit=${limitNumber}&page=${pageNumber}`;
 
     if (searchGoal) {
       params += `&searchGoal=${searchGoal}`;
+    }
+    if (privacyFilter) {
+      params += `&privacyFilter=${privacyFilter}`;
     }
 
     return this.http.get<ResponseWithMetaInterface>(

@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { queryParams } from 'src/app/utils/consts/routes';
+import { queryParams } from 'src/app/utils/consts/query-params';
 
-const { PRIVACY_FILTER_QUERY } = queryParams;
+const { PRIVACY_FILTER_QUERY, SEARCH_GOAL_QUERY } = queryParams;
 
 @Component({
   selector: 'app-pagination',
@@ -21,6 +21,8 @@ export class PaginationComponent {
     this.router.navigate([], {
       queryParams: {
         page: newPage,
+        searchGoal:
+          this.activatedRoute.snapshot.queryParamMap.get(SEARCH_GOAL_QUERY),
         privacyFilter:
           this.activatedRoute.snapshot.queryParamMap.get(PRIVACY_FILTER_QUERY),
       },

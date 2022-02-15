@@ -7,8 +7,3 @@ export enum routes {
   LOGIN = 'login',
   ID = '/:id',
 }
-
-export enum queryParams {
-  PAGE_QUERY = 'page',
-  PRIVACY_FILTER_QUERY = 'privacyFilter',
-}

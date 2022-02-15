@@ -4,9 +4,10 @@ import { ImagesService } from 'src/app/services/images/images.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
-import { queryParams } from 'src/app/utils/consts/routes';
+import { queryParams } from 'src/app/utils/consts/query-params';
+import * as activatedRouteUtil from 'src/app/utils/other/activated-route-util';
 
-const { PAGE_QUERY } = queryParams;
+const { PAGE_QUERY, SEARCH_GOAL_QUERY } = queryParams;
 const DEFAULT_PAGE_NUMBER = 1;
 const ITEMS_PER_PAGE = 16;
 const DEFAULT_TOTAL_ITEMS_NUMBER = 0;
@@ -22,7 +23,7 @@ export class PublicImagesComponent {
     itemsPerPage: number;
     totalItems: number;
   };
-  lastSearchGoal?: string;
+  lastSearchGoal?: string | null;
 
   constructor(
     private imageService: ImagesService,
@@ -40,15 +41,12 @@ export class PublicImagesComponent {
     });
   }
 
-  public getImages(searchGoal?: string): void {
-    if (this.lastSearchGoal != searchGoal) {
-      this.config.currentPage = DEFAULT_PAGE_NUMBER;
-      this.lastSearchGoal = searchGoal;
+  public getImages(): void {
+    const searchGoal = activatedRouteUtil.getQueryParamValue(
+      this.activatedRoute,
+      SEARCH_GOAL_QUERY,
+    );
 
-      this.router.navigate([], {
-        queryParams: { page: DEFAULT_PAGE_NUMBER },
-      });
-    }
     this.imageService
       .getPublicImages(
         this.config.currentPage,

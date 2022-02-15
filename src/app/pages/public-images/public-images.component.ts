@@ -23,7 +23,6 @@ export class PublicImagesComponent {
     itemsPerPage: number;
     totalItems: number;
   };
-  lastSearchGoal?: string | null;
 
   constructor(
     private imageService: ImagesService,

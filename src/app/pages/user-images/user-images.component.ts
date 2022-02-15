@@ -26,8 +26,6 @@ export class UserImagesComponent {
     itemsPerPage: number;
     totalItems: number;
   };
-  lastSearchGoal?: string | null;
-  lastPrivacyFilter?: string | null;
 
   constructor(
     private userImagesService: UserImagesService,

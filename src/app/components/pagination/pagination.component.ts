@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { regularExpressions } from 'src/app/utils/consts/regular-expressions';
+import { queryParams } from 'src/app/utils/consts/query-params';
 
-const { LINK_WITHOUT_QUERIES_REG_EXP } = regularExpressions;
+const { PRIVACY_FILTER_QUERY, SEARCH_GOAL_QUERY } = queryParams;
 
 @Component({
   selector: 'app-pagination',
@@ -15,13 +15,17 @@ export class PaginationComponent {
     itemsPerPage: number;
     totalItems: number;
   };
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   pageChange(newPage: number) {
-    const regex = new RegExp(LINK_WITHOUT_QUERIES_REG_EXP);
-
-    this.router.navigate([regex.exec(this.router.url)![0]], {
-      queryParams: { page: newPage },
+    this.router.navigate([], {
+      queryParams: {
+        page: newPage,
+        searchGoal:
+          this.activatedRoute.snapshot.queryParamMap.get(SEARCH_GOAL_QUERY),
+        privacyFilter:
+          this.activatedRoute.snapshot.queryParamMap.get(PRIVACY_FILTER_QUERY),
+      },
     });
   }
 }

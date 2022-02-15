@@ -4,8 +4,11 @@ import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { UserImagesService } from 'src/app/services/user-images/user-images.service';
 import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.service';
 import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { queryParams } from 'src/app/utils/consts/query-params';
+import { getQueryParamValue } from 'src/app/utils/lib/activated-route';
 
+const { PAGE_QUERY, PRIVACY_FILTER_QUERY, SEARCH_GOAL_QUERY } = queryParams;
 const DEFAULT_PAGE_NUMBER = 1;
 const ITEMS_PER_PAGE = 16;
 const DEFAULT_TOTAL_ITEMS_NUMBER = 0;
@@ -23,78 +26,75 @@ export class UserImagesComponent {
     itemsPerPage: number;
     totalItems: number;
   };
-  searchGoal?: string;
 
   constructor(
     private userImagesService: UserImagesService,
     private tokenStorageService: TokenStorageService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {
     this.config = {
       currentPage: DEFAULT_PAGE_NUMBER,
       itemsPerPage: ITEMS_PER_PAGE,
       totalItems: DEFAULT_TOTAL_ITEMS_NUMBER,
     };
-    route.queryParams.subscribe((params) => {
-      this.config.currentPage = params['page'] || DEFAULT_PAGE_NUMBER;
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.config.currentPage = params[PAGE_QUERY] || DEFAULT_PAGE_NUMBER;
       this.getImages();
     });
   }
 
-  public getImages(searchGoal?: string): void {
+  public getImages(): void {
     const token = this.tokenStorageService.getToken().getValue();
 
-    if (token) {
-      if (this.searchGoal !== searchGoal) {
-        this.config.currentPage = DEFAULT_PAGE_NUMBER;
-      }
-      this.userImagesService
-        .getUserImages(
-          token,
-          this.config.currentPage,
-          this.config.itemsPerPage,
-          searchGoal,
-        )
-        .subscribe(
-          (response: ResponseWithMetaInterface) => {
-            this.config.totalItems = response.meta.count;
-            this.images = response.data.rows;
-          },
-          (err: HttpErrorResponse) => {
-            if (err.status === HttpStatusCode.Forbidden) {
-              return this.tokenStorageService.errorSignOut();
-            }
+    if (!token) {
+      return this.tokenStorageService.errorSignOut();
+    }
 
-            return alert(err.message);
-          },
-        );
+    const privacyFilter = getQueryParamValue(
+      this.activatedRoute,
+      PRIVACY_FILTER_QUERY,
+    );
+    const searchGoal = getQueryParamValue(
+      this.activatedRoute,
+      SEARCH_GOAL_QUERY,
+    );
+
+    this.userImagesService
+      .getUserImages(
+        token,
+        this.config.currentPage,
+        this.config.itemsPerPage,
+        searchGoal,
+        privacyFilter,
+      )
+      .subscribe(
+        (response: ResponseWithMetaInterface) => {
+          this.config.totalItems = response.meta.count;
+          this.images = response.data.rows;
+        },
+        (err: HttpErrorResponse) => {
+          if (err.status === HttpStatusCode.Forbidden) {
+            return this.tokenStorageService.errorSignOut();
+          }
+
+          return alert(err.message);
+        },
+      );
+
+    return;
+  }
+
+  public onOpenModal(image: ImageFromDatabaseInterface | null) {
+    if (image) {
+      this.imageToDelete = image;
 
       return;
     }
 
-    return this.tokenStorageService.errorSignOut();
-  }
+    alert('Image not exist!');
 
-  public onOpenModal(model: {
-    image: ImageFromDatabaseInterface | null;
-    mode: string;
-  }) {
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-
-    if (model.mode === 'delete') {
-      if (model.image) {
-        this.imageToDelete = model.image;
-      }
-
-      button.setAttribute('data-target', '#deleteImageModal');
-    }
-
-    container?.appendChild(button);
-    button.click();
+    return this.getImages();
   }
 
   public openLink(url: string) {

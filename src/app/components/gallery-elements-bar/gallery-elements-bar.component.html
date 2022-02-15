@@ -1,7 +1,7 @@
 <div class="mx-4 mt-2 pb-1 border-bottom bd-highlight border-dark d-flex justify-content-between">
 
     <div class="p-2 mx-3 bd-highlight">
-        <input #searchBox (change)="search(searchBox.value)" type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search"/>
+        <input [(ngModel)]="searchValue" (change)="onSearchChange($any($event.target).value)" type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search"/>
     </div>
 
     <div *ngIf="isAvaliable" class="p-2 me-auto bd-highlight">

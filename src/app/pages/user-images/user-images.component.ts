@@ -10,7 +10,7 @@ import * as activatedRouteUtil from 'src/app/utils/other/activated-route-util';
 
 const { PAGE_QUERY, PRIVACY_FILTER_QUERY, SEARCH_GOAL_QUERY } = queryParams;
 const DEFAULT_PAGE_NUMBER = 1;
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 16;
 const DEFAULT_TOTAL_ITEMS_NUMBER = 0;
 
 @Component({

@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { queryParams } from 'src/app/utils/consts/query-params';
-import * as activatedRouteUtil from 'src/app/utils/other/activated-route-util';
+import { getQueryParamValue } from 'src/app/utils/lib/activated-route';
 
 const DEFAULT_PAGE_NUMBER = 1;
+const EMPTY_SEARCH_VALUE = '';
 const { PRIVACY_FILTER_QUERY, SEARCH_GOAL_QUERY } = queryParams;
 
 @Component({
@@ -22,7 +23,7 @@ export class GalleryElementsBarComponent {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     activatedRoute.queryParams.subscribe((params) => {
-      this.searchValue = params[SEARCH_GOAL_QUERY] || '';
+      this.searchValue = params[SEARCH_GOAL_QUERY] || EMPTY_SEARCH_VALUE;
     });
   }
 
@@ -32,7 +33,7 @@ export class GalleryElementsBarComponent {
     if (searchGoal) {
       queryParams = {
         page: DEFAULT_PAGE_NUMBER,
-        privacyFilter: activatedRouteUtil.getQueryParamValue(
+        privacyFilter: getQueryParamValue(
           this.activatedRoute,
           PRIVACY_FILTER_QUERY,
         ),
@@ -41,7 +42,7 @@ export class GalleryElementsBarComponent {
     } else {
       queryParams = {
         page: DEFAULT_PAGE_NUMBER,
-        privacyFilter: activatedRouteUtil.getQueryParamValue(
+        privacyFilter: getQueryParamValue(
           this.activatedRoute,
           PRIVACY_FILTER_QUERY,
         ),

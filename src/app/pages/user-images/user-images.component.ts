@@ -6,7 +6,7 @@ import { TokenStorageService } from 'src/app/utils/token-storage/token-storage.s
 import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { queryParams } from 'src/app/utils/consts/query-params';
-import * as activatedRouteUtil from 'src/app/utils/other/activated-route-util';
+import { getQueryParamValue } from 'src/app/utils/lib/activated-route';
 
 const { PAGE_QUERY, PRIVACY_FILTER_QUERY, SEARCH_GOAL_QUERY } = queryParams;
 const DEFAULT_PAGE_NUMBER = 1;
@@ -53,11 +53,11 @@ export class UserImagesComponent {
       return this.tokenStorageService.errorSignOut();
     }
 
-    const privacyFilter = activatedRouteUtil.getQueryParamValue(
+    const privacyFilter = getQueryParamValue(
       this.activatedRoute,
       PRIVACY_FILTER_QUERY,
     );
-    const searchGoal = activatedRouteUtil.getQueryParamValue(
+    const searchGoal = getQueryParamValue(
       this.activatedRoute,
       SEARCH_GOAL_QUERY,
     );

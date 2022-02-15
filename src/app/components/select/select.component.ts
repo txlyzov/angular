@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { queryParams } from 'src/app/utils/consts/query-params';
-import * as activatedRouteUtil from 'src/app/utils/other/activated-route-util';
+import { getQueryParamValue } from 'src/app/utils/lib/activated-route';
 
 const DEFAULT_PAGE_NUMBER = 1;
 const NOT_SELECTED_PRIVACY_TYPE = 'All';
@@ -29,18 +29,12 @@ export class SelectComponent {
       queryParams = {
         page: DEFAULT_PAGE_NUMBER,
         privacyFilter,
-        searchGoal: activatedRouteUtil.getQueryParamValue(
-          this.activatedRoute,
-          SEARCH_GOAL_QUERY,
-        ),
+        searchGoal: getQueryParamValue(this.activatedRoute, SEARCH_GOAL_QUERY),
       };
     } else {
       queryParams = {
         page: DEFAULT_PAGE_NUMBER,
-        searchGoal: activatedRouteUtil.getQueryParamValue(
-          this.activatedRoute,
-          SEARCH_GOAL_QUERY,
-        ),
+        searchGoal: getQueryParamValue(this.activatedRoute, SEARCH_GOAL_QUERY),
       };
     }
 

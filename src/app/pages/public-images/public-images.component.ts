@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseWithMetaInterface } from 'src/app/models/response-with-meta-interface';
 import { queryParams } from 'src/app/utils/consts/query-params';
-import * as activatedRouteUtil from 'src/app/utils/other/activated-route-util';
+import { getQueryParamValue } from 'src/app/utils/lib/activated-route';
 
 const { PAGE_QUERY, SEARCH_GOAL_QUERY } = queryParams;
 const DEFAULT_PAGE_NUMBER = 1;
@@ -42,7 +42,7 @@ export class PublicImagesComponent {
   }
 
   public getImages(): void {
-    const searchGoal = activatedRouteUtil.getQueryParamValue(
+    const searchGoal = getQueryParamValue(
       this.activatedRoute,
       SEARCH_GOAL_QUERY,
     );
